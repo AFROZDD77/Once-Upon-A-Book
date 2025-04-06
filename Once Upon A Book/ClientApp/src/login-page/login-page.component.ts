@@ -7,6 +7,7 @@ import { AbstractControl, FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./login-page.component.scss']
 })
 export class LoginPageComponent implements OnInit {
+  showSignUp: boolean = true;
   private readonly formBuilder = inject(FormBuilder);
   signUpForm = this.formBuilder.group({
     Username: ['', [Validators.required, Validators.minLength(5), Validators.pattern(/^[a-zA-Z0-9]+$/)]],
@@ -15,6 +16,11 @@ export class LoginPageComponent implements OnInit {
     ConfirmPassword: ['', [Validators.required, Validators.minLength(8)]]
   }, {
     validators: this.validatePassword,
+  }); 
+
+  logInForm = this.formBuilder.group({
+    Username: ['', Validators.required],
+    Password: ['', Validators.required],
   }); 
   constructor() { }
 
@@ -27,6 +33,10 @@ export class LoginPageComponent implements OnInit {
 
   validatePassword(control: AbstractControl) {
     return control.get('Password')?.value === control.get('ConfirmPassword')?.value ? null : { passwordMismatch: true };
+  }
+
+  togglePage() {
+    this.showSignUp = !this.showSignUp;
   }
 
   onSubmit() {
