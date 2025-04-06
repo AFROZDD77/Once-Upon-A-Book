@@ -1,0 +1,126 @@
+.flew-grow {
+    flex-grow: 1;
+}
+
+.f-4rem {
+    font-size: 4rem !important;
+}
+
+.width-devkit-available {
+    width: -webkit-fill-available !important;
+}
+
+h1 {
+    color: #ededbf !important;
+}
+
+.pe-2rem {
+    padding-right: 2rem !important;
+}
+
+span {
+    margin-top: 0.5rem !important;
+    display: flex;
+    font-size: 1rem;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+span.infoText {
+    color: #bdbdbdbf !important;
+}
+
+span.warningText {
+    color: #ff0000 !important;
+    display: flex;
+    font-size: 1rem;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.d-contents {
+    display: contents !important;
+}
+
+label {
+    color: white !important;
+    font-size: 1.5rem;
+    font-family: "roboto-regular";
+    margin-bottom: 1rem;
+}
+
+.cursor-text {
+    cursor: text !important;
+}
+
+.cursor-pointer {
+    cursor: pointer !important;
+}
+
+.form-control:focus-visible {
+    outline-color: white !important;
+    border-top-color:  white !important;
+    border-right-color:  white !important;
+    border-bottom-color:  white !important;
+    border-left-color: white !important;
+    box-shadow: white 0px 0px 0px 0.1rem !important;
+}
+
+.form-control:focus {
+    outline-color: white !important;
+    border-top-color:  white !important;
+    border-right-color:  white !important;
+    border-bottom-color:  white !important;
+    border-left-color: white !important;
+    box-shadow: white 0px 0px 0px 0.1rem !important;
+}
+
+.form-control:active {
+    outline-color: white !important;
+    border-top-color:  white !important;
+    border-right-color:  white !important;
+    border-bottom-color:  white !important;
+    border-left-color: white !important;
+    box-shadow: white 0px 0px 0px 0.1rem !important;
+}
+
+input.validInput {
+    outline-color: #4fff00 !important;
+    border-top-color:  #4fff00 !important;
+    border-right-color:  #4fff00 !important;
+    border-bottom-color:  #4fff00 !important;
+    border-left-color: #4fff00 !important;
+    box-shadow: #4fff00 0px 0px 0px 0.1rem !important;
+}
+
+input.inValidInput {
+    outline-color: #ff0000  !important;
+    border-top-color:  #ff0000  !important;
+    border-right-color:  #ff0000  !important;
+    border-bottom-color:  #ff0000  !important;
+    border-left-color: #ff0000  !important;
+    box-shadow: #ff0000  0px 0px 0px 0.1rem !important;
+}
+
+button {
+    background-color: #EBB448 !important;
+    border: 0 !important;
+    color: black !important;
+}
+
+button:hover {
+    background-color: #EBB448 !important;
+    border-color: #EBB448 !important;
+    box-shadow: rgb(250, 250, 250) 0px 0px 0px 0.1rem !important;
+    color: black I !important;
+}
+
+input {
+    color: white !important;
+    background-color: #74512D !important;
+    outline-style: double;
+    border-radius: 5px;
+    border: 0 !important;
+    outline-color: #5d4124 !important;
+    outline-width: thin;
+    font-family: sans-serif;
+    margin-top: 0.125rem !important;
+}
