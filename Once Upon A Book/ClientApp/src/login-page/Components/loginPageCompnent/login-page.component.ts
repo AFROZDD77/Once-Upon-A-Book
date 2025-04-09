@@ -1,5 +1,8 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { SecurityQuestionsModalComponent } from 'src/login-page/Modals/security-questions-modal/security-questions-modal.component';
+import { ThemeService } from 'src/services/themeservice';
 
 @Component({
   selector: 'login-page',
@@ -8,12 +11,14 @@ import { AbstractControl, FormBuilder, Validators } from '@angular/forms';
 })
 export class LoginPageComponent implements OnInit {
   showSignUp: boolean = true;
+  questionsAnswer: boolean = false;
   private readonly formBuilder = inject(FormBuilder);
   signUpForm = this.formBuilder.group({
     Username: ['', [Validators.required, Validators.minLength(5), Validators.pattern(/^[a-zA-Z0-9]+$/)]],
     Email: ['', [Validators.required, Validators.email]],
     Password: ['', [Validators.required, Validators.minLength(8), Validators.pattern(/^(?=.*\d)(?=.*[A-Z])(?=.*[!@#$%^&*(),.?":{}|<>]).+$/)]],
-    ConfirmPassword: ['', [Validators.required, Validators.minLength(8)]]
+    ConfirmPassword: ['', [Validators.required, Validators.minLength(8)]],
+    SecurityQuestions: ['' , [Validators.requiredTrue]],
   }, {
     validators: this.validatePassword,
   }); 
@@ -22,7 +27,7 @@ export class LoginPageComponent implements OnInit {
     Username: ['', Validators.required],
     Password: ['', Validators.required],
   }); 
-  constructor() { }
+  constructor(private readonly modalService: NgbModal, private readonly themeService: ThemeService) { }
 
   ngOnInit(): void {
   }
@@ -37,6 +42,11 @@ export class LoginPageComponent implements OnInit {
 
   togglePage() {
     this.showSignUp = !this.showSignUp;
+  }
+
+  toggleSecurityQuestionsModal() {
+    let modalref = this.modalService.open(SecurityQuestionsModalComponent, { size: 'lg', backdrop: 'static', keyboard: false, centered: true, scrollable: false, windowClass: 'blur-background' });
+ 
   }
 
   onSubmit() {

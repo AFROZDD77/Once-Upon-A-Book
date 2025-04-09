@@ -1,0 +1,95 @@
+<div class="d-flex">
+    <div class="d-flex flex-column justify-content-center align-items-center flew-grow">
+        <fieldset class="form-group p-3 border-double border-thin d-flex flex-column">
+            <legend class="float-none w-auto px-3 ms-auto me-auto">
+                <h2 *ngIf="showSignUp">Create New Account</h2>
+                <h2 *ngIf="!showSignUp">Log Into Account</h2>
+            </legend>
+            <div *ngIf="showSignUp" class="d-flex flex-column  align-items-center">
+                    <div class="d-flex flex-column w-50 ms-3">
+                        <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+                            <label for="Username" class="d-flex flex-column">Username<small class="d-contents">*</small>
+                                <div>
+                                    <input [ngClass]="{'validInput': !signUpForm.get('Username')?.errors?.['minlength'] && !signUpForm.get('Username')?.errors?.['required'] && signUpForm.get('Username')?.touched, 'inValidInput': (signUpForm.get('Username')?.errors?.['minlength'] || signUpForm.get('Username')?.errors?.['required'] || signUpForm.get('Username')?.errors?.['pattern']) && signUpForm.get('Username')?.touched}" id="Username" class="form-control" formControlName="Username" placeholder="Enter Your User Name" type="text" maxlength="20">
+                                    <span class="infoText">Username should be at least 5 characters and may only contain alphanumeric characters</span>
+                                    <span class="warningText" *ngIf="signUpForm.get('Username')?.errors?.['pattern'] && signUpForm.get('Username')?.touched">Please enter a valid username!</span>
+                                    <span class="warningText" *ngIf="signUpForm.get('Username')?.errors?.['required'] && signUpForm.get('Username')?.touched">Please enter the username!</span>
+                                    <span class="warningText" *ngIf="signUpForm.get('Username')?.errors?.['minlength'] && signUpForm.get('Username')?.touched">Username must be aletast 5 characters long!</span>
+                                </div>
+                            </label>
+                            <label for="Password" class="d-flex flex-column">Password<small class="d-contents">*</small>
+                                <div  class="d-flex position-relative">
+                                    <input [ngClass]="{'validInput': !signUpForm.get('Password')?.errors?.['minlength'] && !signUpForm.get('Password')?.errors?.['required'] && signUpForm.get('Password')?.touched, 'inValidInput': (signUpForm.get('Password')?.errors?.['minlength'] || signUpForm.get('Password')?.errors?.['required'] || (signUpForm.get('ConfirmPassword')?.touched && signUpForm?.errors?.['passwordMismatch'] || signUpForm.get('Password')?.errors?.['pattern'])) && signUpForm.get('Password')?.touched}" id="Password" class="form-control pe-2rem" formControlName="Password" placeholder="Enter Password" type="password" maxlength="50"/>
+                                    <div class="d-flex justify-content-end align-items-center w-100 h-100 position-absolute cursor-text">
+                                        <i id="PasswordIcon" class="bi bi-eye-slash pe-2 fs-4 cursor-pointer" (click)="togglePasswordIcon('Password')" (keyDown)="togglePasswordIcon('Password')"></i>
+                                    </div>
+                                </div>
+                                <span  class="infoText">Password should be at least 8 characters including a number, an uppercase letter and a special character.</span>
+                                <span class="warningText" *ngIf="signUpForm.get('Password')?.errors?.['pattern'] && signUpForm.get('Password')?.touched">Please enter a valid password!</span>
+                                <span class="warningText" *ngIf="signUpForm.get('Password')?.errors?.['required'] && signUpForm.get('Password')?.touched">Please enter the password!</span>
+                                <span class="warningText" *ngIf="signUpForm.get('Password')?.errors?.['minlength'] && signUpForm.get('Password')?.touched">Password must be atleast 8 characters long!</span>
+                            </label>
+                            <label for="ConfirmPassword"  class="d-flex flex-column">Confirm Password<small class="d-contents">*</small>
+                                <div class="d-flex position-relative">
+                                    <input [ngClass]="{'validInput': !signUpForm.get('ConfirmPassword')?.errors?.['minlength'] && !signUpForm.get('ConfirmPassword')?.errors?.['required'] && signUpForm.get('ConfirmPassword')?.touched, 'inValidInput': (signUpForm.get('ConfirmPassword')?.errors?.['minlength'] || signUpForm.get('ConfirmPassword')?.errors?.['required'] || signUpForm?.errors?.['passwordMismatch']) && signUpForm.get('ConfirmPassword')?.touched}" id="ConfirmPassword" class="form-control pe-2rem" formControlName="ConfirmPassword" placeholder="Confirm Password" type="password" maxlength="50"/>
+                                    <div class="d-flex justify-content-end align-items-center w-100 h-100 position-absolute cursor-text">
+                                        <i id="ConfirmPasswordIcon" class="bi bi-eye-slash pe-2 fs-4 cursor-pointer" (click)="togglePasswordIcon('ConfirmPassword')" (keyDown)="togglePasswordIcon('ConfirmPassword')"></i>
+                                    </div>
+                                </div>
+                                <span class="warningText" *ngIf="signUpForm.get('ConfirmPassword')?.errors?.['required'] && signUpForm.get('ConfirmPassword')?.touched">Please enter the password!</span>
+                                <span class="warningText" *ngIf="signUpForm?.errors?.['passwordMismatch'] && signUpForm.get('ConfirmPassword')?.touched">Passwords must match!</span>
+                            </label>
+                            <label for="Email" class="d-flex flex-column">Email<small class="d-contents">*</small>
+                                <input id="Email" [ngClass]="{'validInput': !signUpForm.get('Email')?.errors?.['email'] && !signUpForm.get('Email')?.errors?.['required'] && signUpForm.get('Email')?.touched, 'inValidInput': (signUpForm.get('Email')?.errors?.['email'] || signUpForm.get('Email')?.errors?.['required']) && signUpForm.get('Email')?.touched}" class="form-control" formControlName="Email" placeholder="Enter Your Email Address" maxlength="50"/>
+                                <span class="warningText" *ngIf="signUpForm.get('Email')?.errors?.['required'] && signUpForm.get('Email')?.touched">Please enter a email address!</span>
+                                <span class="warningText" *ngIf="signUpForm.get('Email')?.errors?.['email'] && signUpForm.get('Email')?.touched">Please Enter a valid email address!</span>
+                            </label>
+                            <label class="d-flex flex-row-reverse justify-content-end align-items-center fs-6"> <a (click)="toggleSecurityQuestionsModal()" (keydown)="toggleSecurityQuestionsModal()">Answer Security Questions<small class="d-contents">*</small></a>
+                                <input type="checkbox" class="form-check-input pe-none" [ngClass]="{'opacity-50': !questionsAnswer}" id="SecurityQuestions" formControlName="SecurityQuestions"/>
+                            </label>
+                        </form>
+                    </div>
+                    <div class="w-50 ms-3 d-flex justify-content-end mt-4">
+                        <button class="btn btn-primary" type="submit" (click)="onSubmit()">Create New Account</button>
+                    </div>
+                </div>
+                <div *ngIf="!showSignUp" class="d-flex flex-column justify-content-center align-items-center">
+                    <div class="d-flex flex-column justify-content-center align-items-center flew-grow"> 
+                        <div class="d-flex flex-column w-100 ms-3">
+                            <form [formGroup]="logInForm" (ngSubmit)="onSubmit()">
+                                <label for="Username" class="d-flex flex-column">Username/ Email<small class="d-contents">*</small>
+                                    <div>
+                                        <input [ngClass]="{'validInput': !logInForm.get('Username')?.errors?.['required'] && logInForm.get('Username')?.touched, 'inValidInput': logInForm.get('Username')?.errors?.['required'] && logInForm.get('Username')?.touched}" id="Username" class="form-control" formControlName="Username" placeholder="Enter Your User Name" type="text" maxlength="20">
+                                    </div>
+                                    <span class="warningText" *ngIf="logInForm.get('Username')?.errors?.['required'] && logInForm.get('Username')?.touched">Please enter the username!</span>
+                                </label>
+                                <label for="Password" class="d-flex flex-column">Password<small class="d-contents">*</small>
+                                    <div  class="d-flex position-relative">
+                                        <input [ngClass]="{'validInput': !logInForm.get('Password')?.errors?.['required'] && logInForm.get('Password')?.touched, 'inValidInput': logInForm.get('Password')?.errors?.['required'] && logInForm.get('Password')?.touched}" id="Password" class="form-control pe-2rem" formControlName="Password" placeholder="Enter Password" type="password" maxlength="50"/>
+                                        <div class="d-flex justify-content-end align-items-center w-100 h-100 position-absolute cursor-text">
+                                            <i id="PasswordIcon" class="bi bi-eye-slash pe-2 fs-4 cursor-pointer" (click)="togglePasswordIcon('Password')" (keyDown)="togglePasswordIcon('Password')"></i>
+                                        </div>
+                                    </div>
+                                    <span class="warningText" *ngIf="logInForm.get('Password')?.errors?.['required'] && logInForm.get('Password')?.touched">Please enter the password!</span>
+                                </label>
+                            </form>
+                        </div>
+                        <div class="w-100 ms-3 d-flex justify-content-end mt-4">
+                            <button class="btn btn-primary" type="submit" (click)="onSubmit()" [disabled]="!logInForm.valid">LogIn</button>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-center mt-4">
+                    </div>        
+                </div>
+                <div class="d-flex justify-content-end mt-4">
+                    <h5 *ngIf="showSignUp">Already have an acount? <a (click)="togglePage()">Log In here →</a></h5>
+                    <h5 *ngIf="!showSignUp">Don't have an account? <a (click)="togglePage()">Sign Up here→</a></h5>
+                </div>
+        </fieldset>
+    </div>
+
+    <!-- <div class="d-flex">
+        <header></header>
+    </div> -->
+</div>
+

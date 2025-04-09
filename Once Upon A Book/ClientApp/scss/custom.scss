@@ -1,4 +1,218 @@
-@import '/scss/varaibles.scss';
+:root {
+    /* -All the Styles given below are for Light Mode- */
+
+    /* -Background Color Variable- */
+    --backgroundColor: #f4f1e7e8;
+
+    /* -Text Color Variable- */
+    --textColor: #4a3f35;
+
+    /* -Input Background Color Variable- */
+    --inputBackgroundColor: #fdfdfddc;
+
+    /* -Input Outline Variable- */
+    --inputOutlineColor: #DAA520;
+
+    /* -Input Text Color Variable- */
+    --inputTextColor: #4a3f35;
+
+    /* -Button Background Color Variable- */
+    --buttonBackgroundColor: #ffb600e8 ;
+
+    /* -Button Text Color Variable- */
+    --buttonTextColor: #4a3f35;
+
+    /* -Button Highlight Color Variable- */
+    --buttonHighlightColor: #4a3f35;
+
+    /* -Link Text color Variable- */
+    --linkTextColor: #4a3f35;
+
+    /* -Link Hover color Variable- */
+    --linkHoverColor: #DAA520;
+
+    /* -span infoText color Variable- */
+    --infoTextColor: #72606091;
+
+    /* -theme toggle button color - */
+    --themeToggleButtonColor: #16191c;
+
+    /* -Styling Accross the WebApp- */  // not working!
+    height: 100vh !important;
+    width: 100vw !important;
+    font-size: 1rem;
+    font-family: "playfair-display", sans-serif !important;
+
+    /* -Variables- */
+    --successGreen: #45d803d9;
+    --warningRed: #ff0000;
+}
+
+/* -All the Styles given below are for Dark Mode- */
+
+.dark-mode {
+    /* -Background Color Variable- */
+    --backgroundColor: #16191c;
+
+    /* -Text Color Variable- */
+    --textColor: #f4f1e7e8;
+
+    /* -Input Background Color Variable- */
+    --inputBackgroundColor: #1f1d1db4;
+
+    /* -Input Outline Variable- */
+    --inputOutlineColor: #DAA520;
+
+    /* -Input Text Color Variable- */
+    --inputTextColor: #f4f1e7e8;
+
+    /* -Button Background Color Variable- */
+    --buttonBackgroundColor: #ffb600e8 ;
+
+    /* -Button Text Color Variable- */
+    --buttonTextColor: #1f1d1db4;
+
+    /* -Button Highlight Color Variable- */
+    --buttonHighlightColor: #f4f1e7e8;
+
+    /* -Link Text color Variable- */
+    --linkTextColor: #f4f1e7e8;
+
+    /* -Link Hover color Variable- */
+    --linkHoverColor: #ffb600e8;
+
+    /* -span infoText color Variable- */
+    --infoTextColor: #989898bf;
+
+     /* -theme toggle button color - */
+     --themeToggleButtonColor: #ededed;
+
+    /* -Variables- */
+    --successGreen: #4fff00;
+}
+
+.modal-header, .modal-body, .modal-footer, .modal-content {
+    background-color: var(--backgroundColor) !important;
+    color: var(--textColor) !important;
+}
+
+body {
+    background-color: var(--backgroundColor) !important;
+    color: var(--textColor) !important;
+    font-family: "playfair-display", sans-serif !important;
+    height: 100vh !important;
+    width: 100vw !important;
+}
+
+
+fieldset {
+    border-radius: 15px !important;
+    border-style: solid !important;
+    border-width: thin !important;
+    border-color: var(--inputOutlineColor) !important;
+}
+
+h1, h2, h3, h4, h5 {
+    color: var(--textColor) !important;
+}
+
+a {
+    text-decoration: underline !important;
+    cursor: pointer !important;
+    color: var(--linkTextColor) !important;
+}
+
+a:hover {
+    text-decoration: none !important;
+    color: var(--linkHoverColor) !important;
+}
+
+span {
+    margin-top: 0.5rem !important;
+    display: flex;
+    font-size: 1rem;
+    color: var(--textColor) !important;
+}
+
+span.infoText {
+    color: var(--infoTextColor) !important;
+}
+
+span.warningText {
+    color: var(--warningRed) !important;
+    display: flex;
+    font-size: 1rem;
+}
+
+label {
+    color: var(--textColor) !important;
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+}
+
+input {
+    color: var(--inputTextColor) !important;
+    background-color: var(--inputBackgroundColor) !important;
+    outline-style: double;
+    border-radius: 5px;
+    border: 0 !important;
+    outline-color: var(--inputOutlineColor) !important;
+    outline-width: thin;
+    margin-top: 0.125rem !important;
+}
+
+input::placeholder {
+    color: var(--inputTextColor) !important;
+    font-size: 1rem !important;
+}
+
+input[type="checkbox"] {
+    margin-right: 0.5rem !important;
+}
+
+input.validInput {
+    outline-color: var(--successGreen) !important;
+    outline-width: 0.15rem !important;
+    outline-style: solid !important;
+}
+
+input.inValidInput {
+    outline-color: #ff0000  !important;
+    outline-width: 0.15rem !important;
+    outline-style: solid !important;
+}
+
+input:focus {
+    box-shadow: var(--inputOutlineColor) 0px 0px 0px 0.1rem !important;
+}
+
+input:active {
+    box-shadow: var(--inputOutlineColor) 0px 0px 0px 0.1rem !important;
+}
+
+button {
+    background-color: var(--buttonBackgroundColor) !important;
+    border: 0 !important;
+    color: var(--buttonTextColor) !important;
+}
+
+button:hover {
+    background-color: var(--buttonBackgroundColor) !important;
+    border-color: var(--buttonHighlightColor) !important;
+    box-shadow: var(--buttonHighlightColor) 0px 0px 0px 0.1rem !important;
+    color: var(--buttonTextColor) !important;
+}
+
+input.lightMode {
+    background-color: var(--inputBackgroundColor)  !important;
+    //454a4d -- dark mode light grey color
+}
+
+.headerClass {
+    height: 7vh !important;
+    width: 100vw !important;
+    background-color: red !important;
+}
 
 .flew-grow {
     flex-grow: 1;
@@ -12,55 +226,8 @@
     width: -webkit-fill-available !important;
 }
 
-h1 {
-    color: $goldenYellow !important;
-}
-
-.goldenYellowColor {
-    color: $goldenYellow !important;
-}
-
-a {
-    text-decoration: underline !important;
-    cursor: pointer !important;
-}
-
-a:hover {
-    text-decoration: none !important;
-    color: #4bdc16 !important;
-}
-
-.pe-2rem {
-    padding-right: 2rem !important;
-}
-
-span {
-    margin-top: 0.5rem !important;
-    display: flex;
-    font-size: 1rem;
-    font-family: Arial, Helvetica, sans-serif;
-}
-
-span.infoText {
-    color: #bdbdbdbf !important;
-}
-
-span.warningText {
-    color: #ff0000 !important;
-    display: flex;
-    font-size: 1rem;
-    font-family: Arial, Helvetica, sans-serif;
-}
-
 .d-contents {
     display: contents !important;
-}
-
-label {
-    color: white !important;
-    font-size: 1.5rem;
-    font-family: "roboto-regular";
-    margin-bottom: 1rem;
 }
 
 .cursor-text {
@@ -71,72 +238,26 @@ label {
     cursor: pointer !important;
 }
 
-.form-control:focus-visible {
-    outline-color: white !important;
-    border-top-color:  white !important;
-    border-right-color:  white !important;
-    border-bottom-color:  white !important;
-    border-left-color: white !important;
-    box-shadow: white 0px 0px 0px 0.1rem !important;
+.blur-background {
+    backdrop-filter: blur(15px) !important;
 }
 
-.form-control:focus {
-    outline-color: white !important;
-    border-top-color:  white !important;
-    border-right-color:  white !important;
-    border-bottom-color:  white !important;
-    border-left-color: white !important;
-    box-shadow: white 0px 0px 0px 0.1rem !important;
+.lablefortogggle {
+	background-color: var(--backgroundColor) !important;
+	border-radius: 50px;
+    border-style: double;
+	transform: scale(1.5);
 }
 
-.form-control:active {
-    outline-color: white !important;
-    border-top-color:  white !important;
-    border-right-color:  white !important;
-    border-bottom-color:  white !important;
-    border-left-color: white !important;
-    box-shadow: white 0px 0px 0px 0.1rem !important;
+.lablefortogggle .ball {
+	background-color: var(--themeToggleButtonColor) !important;
+	border-radius: 50%;
+	height: 19.5px;
+	width: 19.5px;
+	transform: translateX(-4px);
+	transition: transform 0.2s linear;
 }
 
-input.validInput {
-    outline-color: #4fff00 !important;
-    border-top-color:  #4fff00 !important;
-    border-right-color:  #4fff00 !important;
-    border-bottom-color:  #4fff00 !important;
-    border-left-color: #4fff00 !important;
-    box-shadow: #4fff00 0px 0px 0px 0.1rem !important;
-}
-
-input.inValidInput {
-    outline-color: #ff0000  !important;
-    border-top-color:  #ff0000  !important;
-    border-right-color:  #ff0000  !important;
-    border-bottom-color:  #ff0000  !important;
-    border-left-color: #ff0000  !important;
-    box-shadow: #ff0000  0px 0px 0px 0.1rem !important;
-}
-
-button {
-    background-color: #EBB448 !important;
-    border: 0 !important;
-    color: black !important;
-}
-
-button:hover {
-    background-color: #EBB448 !important;
-    border-color: #EBB448 !important;
-    box-shadow: rgb(250, 250, 250) 0px 0px 0px 0.1rem !important;
-    color: black I !important;
-}
-
-input {
-    color: white !important;
-    background-color: #74512D !important;
-    outline-style: double;
-    border-radius: 5px;
-    border: 0 !important;
-    outline-color: #5d4124 !important;
-    outline-width: thin;
-    font-family: sans-serif;
-    margin-top: 0.125rem !important;
+.toggleCheckbox:checked + .lablefortogggle .ball {
+	transform: translateX(20px);
 }
