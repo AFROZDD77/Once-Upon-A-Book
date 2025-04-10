@@ -58,7 +58,7 @@
     --textColor: #f4f1e7e8;
 
     /* -Input Background Color Variable- */
-    --inputBackgroundColor: #1f1d1db4;
+    --inputBackgroundColor: #000000;
 
     /* -Input Outline Variable- */
     --inputOutlineColor: #DAA520;
@@ -167,6 +167,11 @@ input::placeholder {
 }
 
 input[type="checkbox"] {
+    margin-right: 0.5rem !important;
+}
+
+input[type="checkbox"]:checked {
+    background-color: var(--successGreen) !important;
     margin-right: 0.5rem !important;
 }
 

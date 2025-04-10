@@ -1,6 +1,4 @@
-import { Injectable, signal } from "@angular/core";
+import { Injectable } from "@angular/core";
 
 @Injectable()
-export class LoginService {
-    private = signal<Array<string>>(['']);
-}
+export class LoginService { constructor() {} }

@@ -1,13 +1,13 @@
 <div class="d-flex">
     <div class="d-flex flex-column justify-content-center align-items-center flew-grow">
-        <fieldset class="form-group p-3 border-double border-thin d-flex flex-column">
+        <fieldset class="form-group p-3 border-double border-thin d-flex flex-column align-items-center">
             <legend class="float-none w-auto px-3 ms-auto me-auto">
                 <h2 *ngIf="showSignUp">Create New Account</h2>
-                <h2 *ngIf="!showSignUp">Log Into Account</h2>
+                <h2 *ngIf="!showSignUp">Log In to Account</h2>
             </legend>
             <div *ngIf="showSignUp" class="d-flex flex-column  align-items-center">
                     <div class="d-flex flex-column w-50 ms-3">
-                        <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+                        <form [formGroup]="signUpForm">
                             <label for="Username" class="d-flex flex-column">Username<small class="d-contents">*</small>
                                 <div>
                                     <input [ngClass]="{'validInput': !signUpForm.get('Username')?.errors?.['minlength'] && !signUpForm.get('Username')?.errors?.['required'] && signUpForm.get('Username')?.touched, 'inValidInput': (signUpForm.get('Username')?.errors?.['minlength'] || signUpForm.get('Username')?.errors?.['required'] || signUpForm.get('Username')?.errors?.['pattern']) && signUpForm.get('Username')?.touched}" id="Username" class="form-control" formControlName="Username" placeholder="Enter Your User Name" type="text" maxlength="20">
@@ -44,19 +44,21 @@
                                 <span class="warningText" *ngIf="signUpForm.get('Email')?.errors?.['required'] && signUpForm.get('Email')?.touched">Please enter a email address!</span>
                                 <span class="warningText" *ngIf="signUpForm.get('Email')?.errors?.['email'] && signUpForm.get('Email')?.touched">Please Enter a valid email address!</span>
                             </label>
-                            <label class="d-flex flex-row-reverse justify-content-end align-items-center fs-6"> <a (click)="toggleSecurityQuestionsModal()" (keydown)="toggleSecurityQuestionsModal()">Answer Security Questions<small class="d-contents">*</small></a>
-                                <input type="checkbox" class="form-check-input pe-none" [ngClass]="{'opacity-50': !questionsAnswer}" id="SecurityQuestions" formControlName="SecurityQuestions"/>
-                            </label>
+                            <div class="d-flex flex-row-reverse justify-content-end align-items-center">
+                                <label class="fs-6 mb-0" *ngIf="answersSubmitted?.favoriteGame?.length == 0"><a (click)="toggleSecurityQuestionsModal()" (keydown)="toggleSecurityQuestionsModal()">Answer Security Questions<small class="d-contents">*</small></a></label>
+                                <label class="fs-6 mb-0" *ngIf="answersSubmitted?.favoriteGame?.length != 0"><a (click)="toggleSecurityQuestionsModal()" (keydown)="toggleSecurityQuestionsModal()">Review Answers</a></label>
+                                <input type="checkbox" class="form-check-input pe-none" [ngClass]="{'opacity-50': answersSubmitted?.favoriteGame?.length === 0}" id="SecurityQuestions" [checked]="answersSubmitted?.favoriteGame?.length != 0"/>
+                            </div>
                         </form>
                     </div>
                     <div class="w-50 ms-3 d-flex justify-content-end mt-4">
-                        <button class="btn btn-primary" type="submit" (click)="onSubmit()">Create New Account</button>
+                        <button class="btn btn-primary" type="submit" (click)="signUp()" [disabled]="!signUpForm.valid || answersSubmitted?.favoriteGame?.length == 0">Create New Account</button>
                     </div>
                 </div>
                 <div *ngIf="!showSignUp" class="d-flex flex-column justify-content-center align-items-center">
                     <div class="d-flex flex-column justify-content-center align-items-center flew-grow"> 
                         <div class="d-flex flex-column w-100 ms-3">
-                            <form [formGroup]="logInForm" (ngSubmit)="onSubmit()">
+                            <form [formGroup]="logInForm">
                                 <label for="Username" class="d-flex flex-column">Username/ Email<small class="d-contents">*</small>
                                     <div>
                                         <input [ngClass]="{'validInput': !logInForm.get('Username')?.errors?.['required'] && logInForm.get('Username')?.touched, 'inValidInput': logInForm.get('Username')?.errors?.['required'] && logInForm.get('Username')?.touched}" id="Username" class="form-control" formControlName="Username" placeholder="Enter Your User Name" type="text" maxlength="20">
@@ -75,21 +77,17 @@
                             </form>
                         </div>
                         <div class="w-100 ms-3 d-flex justify-content-end mt-4">
-                            <button class="btn btn-primary" type="submit" (click)="onSubmit()" [disabled]="!logInForm.valid">LogIn</button>
+                            <button class="btn btn-primary" type="submit" (click)="logIn()" [disabled]="!logInForm.valid">LogIn</button>
                         </div>
                     </div>
                     <div class="d-flex justify-content-center mt-4">
                     </div>        
                 </div>
-                <div class="d-flex justify-content-end mt-4">
+                <div [ngClass]="{'ms-5': showSignUp}" class="d-flex justify-content-end mt-4">
                     <h5 *ngIf="showSignUp">Already have an acount? <a (click)="togglePage()">Log In here →</a></h5>
                     <h5 *ngIf="!showSignUp">Don't have an account? <a (click)="togglePage()">Sign Up here→</a></h5>
                 </div>
         </fieldset>
     </div>
-
-    <!-- <div class="d-flex">
-        <header></header>
-    </div> -->
 </div>
 

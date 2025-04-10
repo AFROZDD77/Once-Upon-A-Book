@@ -7,6 +7,7 @@ import { HeaderComponent } from 'src/header/header.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SecurityQuestionsModalComponent } from 'src/login-page/Modals/security-questions-modal/security-questions-modal.component';
 import { ThemeService } from 'src/services/themeservice';
+import { LoginService } from 'src/services/loginService';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { ThemeService } from 'src/services/themeservice';
     FormsModule
   ],
   providers: [
-    ThemeService
+    ThemeService,
+    LoginService
   ],
   bootstrap: [AppComponent]
 })

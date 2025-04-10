@@ -1,40 +1,33 @@
-import { Component, inject, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, inject } from '@angular/core';
+import { AbstractControl, FormBuilder, Validators } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { SecurityQuestionsModalComponent } from 'src/login-page/Modals/security-questions-modal/security-questions-modal.component';
-import { ThemeService } from 'src/services/themeservice';
+import { ISecurityQuestionsModal } from 'src/modals/securityQuestions';
+import { securityQuestionsMock } from 'src/mockData/securityQuestionsMock';
 
 @Component({
   selector: 'login-page',
   templateUrl: './login-page.component.html',
   styleUrls: ['./login-page.component.scss']
 })
-export class LoginPageComponent implements OnInit {
+export class LoginPageComponent {
   showSignUp: boolean = true;
-  questionsAnswer: boolean = false;
+  answersSubmitted: ISecurityQuestionsModal = securityQuestionsMock;
   private readonly formBuilder = inject(FormBuilder);
   signUpForm = this.formBuilder.group({
     Username: ['', [Validators.required, Validators.minLength(5), Validators.pattern(/^[a-zA-Z0-9]+$/)]],
     Email: ['', [Validators.required, Validators.email]],
     Password: ['', [Validators.required, Validators.minLength(8), Validators.pattern(/^(?=.*\d)(?=.*[A-Z])(?=.*[!@#$%^&*(),.?":{}|<>]).+$/)]],
-    ConfirmPassword: ['', [Validators.required, Validators.minLength(8)]],
-    SecurityQuestions: ['' , [Validators.requiredTrue]],
+    ConfirmPassword: ['', [Validators.required, Validators.minLength(8)]]
   }, {
-    validators: this.validatePassword,
+    validators: this.validatePassword
   }); 
 
   logInForm = this.formBuilder.group({
     Username: ['', Validators.required],
     Password: ['', Validators.required],
   }); 
-  constructor(private readonly modalService: NgbModal, private readonly themeService: ThemeService) { }
-
-  ngOnInit(): void {
-  }
-
-  updateName() {
-    // this.signUpGroup.value.Username.
-  }
+  constructor(private readonly modalService: NgbModal) { }
 
   validatePassword(control: AbstractControl) {
     return control.get('Password')?.value === control.get('ConfirmPassword')?.value ? null : { passwordMismatch: true };
@@ -46,17 +39,20 @@ export class LoginPageComponent implements OnInit {
 
   toggleSecurityQuestionsModal() {
     let modalref = this.modalService.open(SecurityQuestionsModalComponent, { size: 'lg', backdrop: 'static', keyboard: false, centered: true, scrollable: false, windowClass: 'blur-background' });
- 
+    modalref.componentInstance.securityQuestionsForm.setValue(this.answersSubmitted);
+    modalref.componentInstance.answersSubmitted.subscribe((answersSubmitted: ISecurityQuestionsModal) => {
+      this.answersSubmitted = answersSubmitted;
+    })
   }
 
-  onSubmit() {
+  signUp() {
     // TODO: Use EventEmitter with form value
     console.warn(this.signUpForm.value);
-    console.log(this.signUpForm.controls.Username.errors)
-    console.log(this.signUpForm.controls.Email.errors)
-    console.log(this.signUpForm.controls.Password.errors)
-    console.log(this.signUpForm.controls.ConfirmPassword.errors)
-        // this.signUpForm.value.Password.
+  }
+
+  logIn() {
+    // TODO: Use EventEmitter with form value
+    console.warn(this.signUpForm.value);
   }
 
   togglePasswordIcon(id: string) {

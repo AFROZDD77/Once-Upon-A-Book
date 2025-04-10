@@ -1,6 +1,7 @@
-import { Component, inject } from '@angular/core';
-import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Component, EventEmitter, inject, Output } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { LoginService } from 'src/services/loginService';
 
 @Component({
   selector: 'app-security-questions-modal',
@@ -8,6 +9,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrl: './security-questions-modal.component.scss'
 })
 export class SecurityQuestionsModalComponent {
+  @Output() answersSubmitted = new EventEmitter<any>();
   private readonly formBuilder = inject(FormBuilder);
   securityQuestionsForm = this.formBuilder.group({
     firstPet: ['', Validators.required],
@@ -20,4 +22,8 @@ export class SecurityQuestionsModalComponent {
     this.activeModal.close();
   }
 
+  onSubmit() {
+    this.answersSubmitted.emit(this.securityQuestionsForm.value);
+    this.activeModal.close();
+  }
 }
