@@ -1,0 +1,34 @@
+    <fieldset class="form-group p-3 border-double border-thin d-flex flex-column align-items-center">
+        <legend class="float-none w-auto px-3 ms-auto me-auto">
+            <h2>Log In to Account</h2>
+        </legend>
+        <div class="d-flex flex-column justify-content-center align-items-center flew-grow"> 
+            <div class="d-flex flex-column w-100 ms-3">
+                <form [formGroup]="logInForm">
+                    <label for="Username" class="d-flex flex-column">Username/ Email<small class="d-contents">*</small>
+                        <div>
+                            <input [ngClass]="{'validInput': !logInForm.get('Username')?.errors?.['required'] && logInForm.get('Username')?.touched, 'inValidInput': logInForm.get('Username')?.errors?.['required'] && logInForm.get('Username')?.touched}" id="Username" class="form-control" formControlName="Username" placeholder="Enter Your User Name" type="text" maxlength="20">
+                        </div>
+                        <span class="warningText" *ngIf="logInForm.get('Username')?.errors?.['required'] && logInForm.get('Username')?.touched">Please enter the username!</span>
+                    </label>
+                    <label for="Password" class="d-flex flex-column">Password<small class="d-contents">*</small>
+                        <div  class="d-flex position-relative">
+                            <input [ngClass]="{'validInput': !logInForm.get('Password')?.errors?.['required'] && logInForm.get('Password')?.touched, 'inValidInput': logInForm.get('Password')?.errors?.['required'] && logInForm.get('Password')?.touched}" id="Password" class="form-control pe-2rem" formControlName="Password" placeholder="Enter Password" type="password" maxlength="50"/>
+                            <div class="d-flex justify-content-end align-items-center w-100 h-100 position-absolute cursor-text">
+                                <i id="PasswordIcon" class="bi bi-eye-slash pe-2 fs-4 cursor-pointer" (click)="togglePasswordIcon('Password')" (keyDown)="togglePasswordIcon('Password')"></i>
+                            </div>
+                        </div>
+                        <span class="warningText" *ngIf="logInForm.get('Password')?.errors?.['required'] && logInForm.get('Password')?.touched">Please enter the password!</span>
+                    </label>
+                </form>
+            </div>
+            <div class="w-100 ms-3 d-flex justify-content-end mt-4">
+                <button class="btn btn-primary" type="submit" (click)="logIn()" [disabled]="!logInForm.valid">LogIn</button>
+            </div>
+        </div>
+        <div class="d-flex justify-content-center mt-4">
+        </div>        
+        <div class="d-flex justify-content-end mt-4">
+            <h5>Don't have an account? <a routerLink="/signUp">Sign Up here→</a></h5>
+        </div>
+    </fieldset>

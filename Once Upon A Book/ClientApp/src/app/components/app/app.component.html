@@ -1,11 +1,11 @@
 <div class="d-flex flex-column h-100 w-100">
-    <div class="d-flex justify-content-center align-items-center headerClass">
+    <div class="d-flex justify-content-center align-items-center w-100 headerClass">
         <header-component class="w-100"></header-component>
     </div>
     <div class="d-flex justify-content-center align-items-center bodyClass h-100 w-100">
-        <login-page></login-page>
+        <router-outlet></router-outlet>
     </div>
-    <div class="d-flex">
-        <!-- <footer-component></footer-component> -->
+    <div class="d-flex w-100 footerClass">
+        <footer-component class="w-100"></footer-component>
     </div>
 </div>

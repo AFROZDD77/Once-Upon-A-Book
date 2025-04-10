@@ -4,6 +4,9 @@
     /* -Background Color Variable- */
     --backgroundColor: #f4f1e7e8;
 
+     /* -Secondary Background Color Variable- */
+     --secondaryBackgroundColor: #cbae85;
+
     /* -Text Color Variable- */
     --textColor: #4a3f35;
 
@@ -20,7 +23,7 @@
     --buttonBackgroundColor: #ffb600e8 ;
 
     /* -Button Text Color Variable- */
-    --buttonTextColor: #4a3f35;
+    --buttonTextColor: #000000;
 
     /* -Button Highlight Color Variable- */
     --buttonHighlightColor: #4a3f35;
@@ -54,6 +57,9 @@
     /* -Background Color Variable- */
     --backgroundColor: #16191c;
 
+    /* -Secondary Background Color Variable- */
+    --secondaryBackgroundColor: #383F47;
+
     /* -Text Color Variable- */
     --textColor: #f4f1e7e8;
 
@@ -67,13 +73,13 @@
     --inputTextColor: #f4f1e7e8;
 
     /* -Button Background Color Variable- */
-    --buttonBackgroundColor: #ffb600e8 ;
+    --buttonBackgroundColor: #000000 ;
 
     /* -Button Text Color Variable- */
-    --buttonTextColor: #1f1d1db4;
+    --buttonTextColor: #DAA520;
 
     /* -Button Highlight Color Variable- */
-    --buttonHighlightColor: #f4f1e7e8;
+    --buttonHighlightColor: #DAA520;
 
     /* -Link Text color Variable- */
     --linkTextColor: #f4f1e7e8;
@@ -182,7 +188,7 @@ input.validInput {
 }
 
 input.inValidInput {
-    outline-color: #ff0000  !important;
+    outline-color: var(--warningRed)  !important;
     outline-width: 0.15rem !important;
     outline-style: solid !important;
 }
@@ -201,6 +207,12 @@ button {
     color: var(--buttonTextColor) !important;
 }
 
+:root.dark-mode button {
+    border-style: solid !important;
+    border-width: thin !important;
+    border-color: var(--buttonHighlightColor) !important;
+}
+
 button:hover {
     background-color: var(--buttonBackgroundColor) !important;
     border-color: var(--buttonHighlightColor) !important;
@@ -215,8 +227,17 @@ input.lightMode {
 
 .headerClass {
     height: 7vh !important;
-    width: 100vw !important;
-    background-color: red !important;
+    background-color: var(--secondaryBackgroundColor) !important;
+}
+
+.footerClass {
+    height: 4vh !important;
+    background-color: var(--secondaryBackgroundColor) !important;
+    box-shadow: 0 0 6px #ffffff40 !important;
+}
+
+.f-12 {
+    font-size: 12px !important;
 }
 
 .flew-grow {
