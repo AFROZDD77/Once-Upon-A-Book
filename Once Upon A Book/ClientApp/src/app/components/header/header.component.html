@@ -1,0 +1,23 @@
+<div class="d-flex justify-content-between">
+    <div>
+        <h1>Once Upon A Book</h1>
+    </div>
+    <div class="d-flex flex-row align-items-center mx-3">
+        <!-- <div class="me-3">
+            <input type="text" placeholder="Search..." class="form-control"/>
+        </div> -->
+        <div class="mx-3">
+            <input type="checkbox" class="opacity-0 position-absolute toggleCheckbox me-2" id="toggledarkmode" (click)="toggleDarkTheme()" (keydown)="toggleDarkTheme()"/>
+            <label class="d-flex align-items-center justify-content-between cursor-pointer position-relative lablefortogggle mb-0 pt-0 px-2 fs-6" for="toggledarkmode">
+                <i class="bi bi-moon"></i>
+                <i class="bi bi-sun ms-1"></i>
+                <div class="position-absolute">
+                    <div class="ball"></div>
+                </div>
+            </label>
+        </div>
+        <!-- <div class="ms-3">
+            <input class="form-control"/>    
+        </div> -->
+    </div>
+</div>

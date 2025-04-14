@@ -1,0 +1,44 @@
+<div class="d-flex flex-column">
+    <div class="d-flex justify-content-between modal-header">
+      <h3 class="modal-title">Security Questions</h3>
+      <button type="button" class="p-0" aria-label="Close" (click)="closeModal()">
+        <i class="d-flex fs-2 bi bi-x"></i>
+      </button>
+    </div>
+    <div class="modal-content">
+        <div class="modal-body">
+            <form [formGroup]="securityQuestionsForm">
+                <div class="mb-3">
+                    <label for="answer1" class="form-label">What is the name of your first pet?
+                        <div class="d-flex flex-row">
+                            <span class="me-2">Answer: </span>
+                            <input type="text" id="answer1" formControlName="firstPet" class="form-control">
+                        </div>
+                        <span class="warningText" *ngIf="securityQuestionsForm.get('firstPet')?.errors?.['required'] && securityQuestionsForm.get('firstPet')?.touched">Please enter an answer!</span>
+                    </label>
+                </div>
+                <div class="mb-3">
+                    <label for="answer2" class="form-label">What is the name of your favorite childhood street?
+                        <div class="d-flex flex-row">
+                            <span class="me-2">Answer: </span>
+                            <input type="text" id="answer2" formControlName="favoriteStreet" class="form-control">
+                        </div>
+                        <span class="warningText" *ngIf="securityQuestionsForm.get('favoriteStreet')?.errors?.['required'] && securityQuestionsForm.get('favoriteStreet')?.touched">Please enter an answer!</span>
+                    </label>
+                </div>
+                <div class="mb-3">
+                    <label for="answer3" class="form-label">What is the name of your favorite Game?
+                        <div class="d-flex flex-row">
+                            <span class="me-2">Answer: </span>
+                            <input type="text" id="answer3" formControlName="favoriteGame" class="form-control">
+                        </div>
+                        <span class="warningText" *ngIf="securityQuestionsForm.get('favoriteGame')?.errors?.['required'] && securityQuestionsForm.get('favoriteGame')?.touched">Please enter an answer!</span>
+                    </label>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" (click)="onSubmit()" [disabled]="!securityQuestionsForm.valid">Submit</button>
+    </div>
+</div>

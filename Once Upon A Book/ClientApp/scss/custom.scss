@@ -1,0 +1,300 @@
+:root {
+    /* -All the Styles given below are for Light Mode- */
+
+    /* -Background Color Variable- */
+    --backgroundColor: #f4f1e7e8;
+
+     /* -Secondary Background Color Variable- */
+     --secondaryBackgroundColor: #cbae85;
+
+    /* -Text Color Variable- */
+    --textColor: #4a3f35;
+
+    /* -Input Background Color Variable- */
+    --inputBackgroundColor: #fdfdfddc;
+
+    /* -Input Outline Variable- */
+    --inputOutlineColor: #DAA520;
+
+    /* -Input Text Color Variable- */
+    --inputTextColor: #4a3f35;
+
+    /* -Button Background Color Variable- */
+    --buttonBackgroundColor: #ffb600e8 ;
+
+    /* -Button Text Color Variable- */
+    --buttonTextColor: #000000;
+
+    /* -Button Highlight Color Variable- */
+    --buttonHighlightColor: #4a3f35;
+
+    /* -Link Text color Variable- */
+    --linkTextColor: #4a3f35;
+
+    /* -Link Hover color Variable- */
+    --linkHoverColor: #DAA520;
+
+    /* -span infoText color Variable- */
+    --infoTextColor: #72606091;
+
+    /* -theme toggle button color - */
+    --themeToggleButtonColor: #16191c;
+
+    /* -Styling Accross the WebApp- */  // not working!
+    height: 100vh !important;
+    width: 100vw !important;
+    font-size: 1rem;
+    font-family: "playfair-display", sans-serif !important;
+
+    /* -Variables- */
+    --successGreen: #45d803d9;
+    --warningRed: #ff0000;
+}
+
+/* -All the Styles given below are for Dark Mode- */
+
+.dark-mode {
+    /* -Background Color Variable- */
+    --backgroundColor: #16191c;
+
+    /* -Secondary Background Color Variable- */
+    --secondaryBackgroundColor: #383F47;
+
+    /* -Text Color Variable- */
+    --textColor: #f4f1e7e8;
+
+    /* -Input Background Color Variable- */
+    --inputBackgroundColor: #000000;
+
+    /* -Input Outline Variable- */
+    --inputOutlineColor: #DAA520;
+
+    /* -Input Text Color Variable- */
+    --inputTextColor: #f4f1e7e8;
+
+    /* -Button Background Color Variable- */
+    --buttonBackgroundColor: #000000 ;
+
+    /* -Button Text Color Variable- */
+    --buttonTextColor: #DAA520;
+
+    /* -Button Highlight Color Variable- */
+    --buttonHighlightColor: #DAA520;
+
+    /* -Link Text color Variable- */
+    --linkTextColor: #f4f1e7e8;
+
+    /* -Link Hover color Variable- */
+    --linkHoverColor: #ffb600e8;
+
+    /* -span infoText color Variable- */
+    --infoTextColor: #989898bf;
+
+     /* -theme toggle button color - */
+     --themeToggleButtonColor: #ededed;
+
+    /* -Variables- */
+    --successGreen: #4fff00;
+}
+
+.modal-header, .modal-body, .modal-footer, .modal-content {
+    background-color: var(--backgroundColor) !important;
+    color: var(--textColor) !important;
+}
+
+body {
+    background-color: var(--backgroundColor) !important;
+    color: var(--textColor) !important;
+    font-family: "playfair-display", sans-serif !important;
+    height: 100vh !important;
+    width: 100vw !important;
+}
+
+
+fieldset {
+    border-radius: 15px !important;
+    border-style: solid !important;
+    border-width: thin !important;
+    border-color: var(--inputOutlineColor) !important;
+}
+
+h1, h2, h3, h4, h5 {
+    color: var(--textColor) !important;
+}
+
+a {
+    text-decoration: underline !important;
+    cursor: pointer !important;
+    color: var(--linkTextColor) !important;
+}
+
+a:hover {
+    text-decoration: none !important;
+    color: var(--linkHoverColor) !important;
+}
+
+span {
+    margin-top: 0.5rem !important;
+    display: flex;
+    font-size: 1rem;
+    color: var(--textColor) !important;
+}
+
+span.infoText {
+    color: var(--infoTextColor) !important;
+}
+
+span.warningText {
+    color: var(--warningRed) !important;
+    display: flex;
+    font-size: 1rem;
+}
+
+label {
+    color: var(--textColor) !important;
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+}
+
+input {
+    @extend .input-bg-color;
+    @extend .input-text-color;
+    outline-style: double;
+    border-radius: 5px;
+    border: 0 !important;
+    outline-color: var(--inputOutlineColor) !important;
+    outline-width: thin;
+    margin-top: 0.125rem !important;
+}
+
+input::placeholder {
+    @extend .input-text-color;
+    font-size: 1rem !important;
+}
+
+input[type="checkbox"]:checked {
+    @extend .bg-succes;
+}
+
+input.validInput {
+    outline-color: var(--successGreen) !important;
+    outline-width: 0.15rem !important;
+    outline-style: solid !important;
+}
+
+input.inValidInput {
+    outline-color: var(--warningRed)  !important;
+    outline-width: 0.15rem !important;
+    outline-style: solid !important;
+}
+
+input:focus {
+    box-shadow: var(--inputOutlineColor) 0px 0px 0px 0.1rem !important;
+}
+
+input:active {
+    box-shadow: var(--inputOutlineColor) 0px 0px 0px 0.1rem !important;
+}
+
+button {
+    border-radius: 5px;
+    background-color: var(--buttonBackgroundColor) !important;
+    border: 0 !important;
+    color: var(--buttonTextColor) !important;
+}
+
+:root.dark-mode button {
+    border-style: solid !important;
+    border-width: thin !important;
+    border-color: var(--buttonHighlightColor) !important;
+}
+
+button:hover {
+    background-color: var(--buttonBackgroundColor) !important;
+    border-color: var(--buttonHighlightColor) !important;
+    box-shadow: var(--buttonHighlightColor) 0px 0px 0px 0.1rem !important;
+    color: var(--buttonTextColor) !important;
+}
+
+.headerClass {
+    height: 7vh !important;
+    background-color: var(--secondaryBackgroundColor) !important;
+}
+
+.footerClass {
+    height: 4vh !important;
+    background-color: var(--secondaryBackgroundColor) !important;
+    box-shadow: 0 0 6px #ffffff40 !important;
+}
+
+.bg-succes {
+    background-color: var(--successGreen) !important;
+}
+
+.bg-warning {
+    background-color: var(--warningRed) !important;
+}
+
+.input-text-color {
+    color: var(--inputTextColor) !important;
+}
+
+.input-bg-color {
+    background-color: var(--inputBackgroundColor) !important;
+}
+
+.input-bg-tex-color {
+    color: var(--inputBackgroundColor) !important;
+}
+
+.f-12 {
+    font-size: 12px !important;
+}
+
+.flew-grow {
+    flex-grow: 1;
+}
+
+.f-4rem {
+    font-size: 4rem !important;
+}
+
+.width-devkit-available {
+    width: -webkit-fill-available !important;
+}
+
+.d-contents {
+    display: contents !important;
+}
+
+.cursor-text {
+    cursor: text !important;
+}
+
+.cursor-pointer {
+    cursor: pointer !important;
+}
+
+.blur-background {
+    backdrop-filter: blur(15px) !important;
+}
+
+.lablefortogggle {
+	background-color: var(--backgroundColor) !important;
+	border-radius: 50px;
+    border-style: double;
+	transform: scale(1.5);
+}
+
+.lablefortogggle .ball {
+	background-color: var(--themeToggleButtonColor) !important;
+	border-radius: 50%;
+	height: 19.5px;
+	width: 19.5px;
+	transform: translateX(-4px);
+	transition: transform 0.2s linear;
+}
+
+.toggleCheckbox:checked + .lablefortogggle .ball {
+	transform: translateX(20px);
+}
