@@ -1,6 +1,6 @@
-import { ISecurityQuestionsModal } from '../modals/securityQuestions';
+import { ISecurityQuestionsModel } from '../models/securityQuestionsModel';
 
-export const securityQuestionsMock: ISecurityQuestionsModal = {
+export const securityQuestionsMock: ISecurityQuestionsModel = {
     firstPet: '',
     favoriteStreet: '',
     favoriteGame: ''

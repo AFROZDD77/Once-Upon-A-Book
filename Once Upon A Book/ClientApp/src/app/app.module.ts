@@ -10,6 +10,7 @@ import { ThemeService } from 'src/services/themeservice';
 import { LoginService } from 'src/services/loginService';
 import { LogInComponent } from 'src/login-page/Components/log-in/log-in.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -24,11 +25,13 @@ import { FooterComponent } from './components/footer/footer.component';
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [
     ThemeService,
-    LoginService
+    LoginService,
+    HttpClient
   ],
   bootstrap: [AppComponent]
 })

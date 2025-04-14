@@ -157,8 +157,8 @@ label {
 }
 
 input {
-    color: var(--inputTextColor) !important;
-    background-color: var(--inputBackgroundColor) !important;
+    @extend .input-bg-color;
+    @extend .input-text-color;
     outline-style: double;
     border-radius: 5px;
     border: 0 !important;
@@ -168,17 +168,12 @@ input {
 }
 
 input::placeholder {
-    color: var(--inputTextColor) !important;
+    @extend .input-text-color;
     font-size: 1rem !important;
 }
 
-input[type="checkbox"] {
-    margin-right: 0.5rem !important;
-}
-
 input[type="checkbox"]:checked {
-    background-color: var(--successGreen) !important;
-    margin-right: 0.5rem !important;
+    @extend .bg-succes;
 }
 
 input.validInput {
@@ -221,11 +216,6 @@ button:hover {
     color: var(--buttonTextColor) !important;
 }
 
-input.lightMode {
-    background-color: var(--inputBackgroundColor)  !important;
-    //454a4d -- dark mode light grey color
-}
-
 .headerClass {
     height: 7vh !important;
     background-color: var(--secondaryBackgroundColor) !important;
@@ -235,6 +225,26 @@ input.lightMode {
     height: 4vh !important;
     background-color: var(--secondaryBackgroundColor) !important;
     box-shadow: 0 0 6px #ffffff40 !important;
+}
+
+.bg-succes {
+    background-color: var(--successGreen) !important;
+}
+
+.bg-warning {
+    background-color: var(--warningRed) !important;
+}
+
+.input-text-color {
+    color: var(--inputTextColor) !important;
+}
+
+.input-bg-color {
+    background-color: var(--inputBackgroundColor) !important;
+}
+
+.input-bg-tex-color {
+    color: var(--inputBackgroundColor) !important;
 }
 
 .f-12 {
