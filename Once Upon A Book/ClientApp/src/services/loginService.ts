@@ -19,4 +19,12 @@ export class LoginService {
     getuser() {
         return this.http.get("https://localhost:44306/api/home/getAllUsers");
     }    
+
+    loginuser(username: string, password: string) {
+        return this.http.post(`https://localhost:44306/api/home/login`, {username, password});
+    }
+
+    testJWT() {
+        return this.http.get('https://localhost:44306/api/home/testJWT');
+    }
  }

@@ -1,6 +1,8 @@
+import { jsDocComment } from '@angular/compiler';
 import { Component, inject } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { PasswordIconHelper } from 'src/helpers/passwordIconHelper';
+import { LoginService } from 'src/services/loginService';
 
 @Component({
   selector: 'logInPage',
@@ -13,10 +15,32 @@ export class LogInComponent {
       Username: ['', Validators.required],
       Password: ['', Validators.required],
   });
+
+  constructor(private readonly loginService: LoginService) {}
   
   logIn() {
     // TODO: Use EventEmitter with form value
     console.warn(this.logInForm.value);
+    this.loginService.loginuser(this.logInForm.value.Username!, this.logInForm.value.Password!).subscribe({
+      next(response: any) {
+        console.log("response", response.token)
+        localStorage.setItem('Jwt_Token', response.token);
+      },
+      error(err) {
+        console.log(err)
+      },
+    })
+  }
+
+  testJWT() {
+    this.loginService.testJWT().subscribe({
+      next(value) {
+        console.log("Test JWT", value)
+      },
+      error(err) {
+        console.log("err", err)
+      },
+    })
   }
 
   togglePasswordIcon(id: string) {
