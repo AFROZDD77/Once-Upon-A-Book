@@ -28,7 +28,7 @@ export class SignUpPageComponent {
                  control => this.validateUsername(control, this.credentials),
                  control => this.validatePassword(control)]
   }); 
-  constructor(private readonly modalService: NgbModal, private loginService: LoginService) { }
+  constructor(private readonly modalService: NgbModal, private readonly loginService: LoginService) { }
 
   ngOnInit(): void {
     this.getCredentials();
@@ -44,6 +44,12 @@ export class SignUpPageComponent {
 
   validateEmail(control: AbstractControl, credentials: {email:string, username: string}[]) {
     return this.credentials?.map((x) => x.email)?.includes(control.get('Email')?.value!) ? { emailExists: true } : null;
+  }
+
+  restrictCopy(event: KeyboardEvent) {
+    if (event.key === 'v' && (event.ctrlKey || event.metaKey)) {
+      event.preventDefault();
+    }
   }
 
   toggleSecurityQuestionsModal() {

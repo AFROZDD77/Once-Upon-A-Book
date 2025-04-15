@@ -10,7 +10,8 @@ import { ThemeService } from 'src/services/themeservice';
 import { LoginService } from 'src/services/loginService';
 import { LogInComponent } from 'src/login-page/Components/log-in/log-in.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
+import { JwtInterceptor } from './interceptors/JwtInterceptor';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,12 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
   providers: [
     ThemeService,
     LoginService,
-    HttpClient
+    HttpClient,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: JwtInterceptor,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })

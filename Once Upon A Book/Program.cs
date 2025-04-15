@@ -1,5 +1,9 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using Once_Upon_A_Book.Models;
+using System.Text;
+using static System.Net.WebRequestMethods;
 //using Once_Upon_A_Book.Repository;
 
 
@@ -20,6 +24,19 @@ builder.Services.AddCors(options =>
                       {
                           policy.WithOrigins("http://localhost:4200").AllowAnyHeader().AllowAnyMethod();
                       });
+});
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
+{
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuer = true,
+        ValidateAudience = true,
+        ValidateLifetime = true,
+        ValidateIssuerSigningKey = true,
+        ValidIssuer = "http://localhost:4200",
+        ValidAudience = "http://localhost:4200",
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration.GetValue<string>("JwtTokenSecret")))
+    };
 });
 //builder.Services.AddScoped<IUserRepo, UserRepo>();
 //builder.Services.AddSpaStaticFiles(options =>
@@ -62,7 +79,6 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "api",
     pattern: "api/{controller=Home}/{action=Index}/{id?}");
-
 
 //app.UseSpa(spa =>
 //{
