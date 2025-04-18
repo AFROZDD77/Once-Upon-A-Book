@@ -8,14 +8,14 @@ export class JwtInterceptor implements HttpInterceptor {
         const token = localStorage.getItem('Jwt_Token');
        
         // Clone the request and add the JWT token to the headers
-        if (token) {
-            request = request.clone({
-                headers: request.headers.set('Content-Type', 'application/json'), 
-                setHeaders: {
-                    Authorization: `Bearer ${token}`
-                }
-            });
-        }
+        // if (token) {
+        //     request = request.clone({
+        //         // headers: request.headers.set('Content-Type', 'application/json'), 
+        //         setHeaders: {
+        //             Authorization: `Bearer ${token}`
+        //         }
+        //     });
+        // }
        return next.handle(request);
     }
 }

@@ -40,6 +40,12 @@
     /* -theme toggle button color - */
     --themeToggleButtonColor: #16191c;
 
+    /* -genre outline  color - */
+    --genreOutlineColor: #16191c;
+
+    /* -genre container outline  color - */
+    --genreContainerOutlineColor: #DAA520;
+
     /* -Styling Accross the WebApp- */  // not working!
     height: 100vh !important;
     width: 100vw !important;
@@ -90,8 +96,14 @@
     /* -span infoText color Variable- */
     --infoTextColor: #989898bf;
 
-     /* -theme toggle button color - */
-     --themeToggleButtonColor: #ededed;
+    /* -theme toggle button color - */
+    --themeToggleButtonColor: #ededed;
+
+    /* -genre outline  color - */
+    --genreOutlineColor: var(--successGreen);
+
+    /* -genre container outline  color - */
+    --genreContainerOutlineColor: #f4f1e7e8;
 
     /* -Variables- */
     --successGreen: #4fff00;
@@ -123,8 +135,8 @@ h1, h2, h3, h4, h5 {
 }
 
 a {
+    @extend .cursor-pointer;
     text-decoration: underline !important;
-    cursor: pointer !important;
     color: var(--linkTextColor) !important;
 }
 
@@ -159,11 +171,10 @@ label {
 input {
     @extend .input-bg-color;
     @extend .input-text-color;
-    outline-style: double;
+    @extend .outline-standard-style;
     border-radius: 5px;
     border: 0 !important;
     outline-color: var(--inputOutlineColor) !important;
-    outline-width: thin;
     margin-top: 0.125rem !important;
 }
 
@@ -177,23 +188,34 @@ input[type="checkbox"]:checked {
 }
 
 input.validInput {
+    @extend .outline-standard-style;
     outline-color: var(--successGreen) !important;
-    outline-width: 0.15rem !important;
-    outline-style: solid !important;
+}
+
+input.validInput:focus {
+    box-shadow: var(--successGreen) 0px 0px 0.25rem 0.2rem !important;
 }
 
 input.inValidInput {
+    @extend .outline-standard-style;
     outline-color: var(--warningRed)  !important;
-    outline-width: 0.15rem !important;
+}
+
+.outline-standard-style {
+    outline-width: thin !important;
     outline-style: solid !important;
 }
 
+input.inValidInput:focus {
+    box-shadow: var(--warningRed) 0px 0px 0.25rem 0.2rem !important;
+}
+
 input:focus {
-    box-shadow: var(--inputOutlineColor) 0px 0px 0px 0.1rem !important;
+    box-shadow: var(--inputOutlineColor) 0px 0px 0.25rem 0.2rem !important;
 }
 
 input:active {
-    box-shadow: var(--inputOutlineColor) 0px 0px 0px 0.1rem !important;
+    box-shadow: var(--inputOutlineColor) 0px 0px 0.25rem 0.2rem !important;
 }
 
 button {
@@ -212,7 +234,7 @@ button {
 button:hover {
     background-color: var(--buttonBackgroundColor) !important;
     border-color: var(--buttonHighlightColor) !important;
-    box-shadow: var(--buttonHighlightColor) 0px 0px 0px 0.1rem !important;
+    box-shadow: var(--buttonHighlightColor) 0px 0px 0.25rem 0.2rem !important;
     color: var(--buttonTextColor) !important;
 }
 
@@ -279,6 +301,63 @@ button:hover {
     backdrop-filter: blur(15px) !important;
 }
 
+.h-2rem {
+    height: 2rem;
+}
+
+.mw-fit-content {
+    min-width: fit-content !important;
+}
+
+
+.modal-dialog, .modal-content {
+    max-height: 75% !important;
+}
+
+/* -Genre Buttons Stylings- */
+
+// .dot {
+//     width: 12px;
+//     height: 12px;
+// }
+
+.dot {
+    display: block;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%; 
+    box-shadow: 0 0 0 3px transparentize(#5b96d5, 0.8);
+    background-color: #5b96d5;
+    margin-right: 6px;
+}
+
+.selectedDot {
+    background-color: var(--successGreen);
+}
+
+.unSelectedDot {
+    box-shadow: 0px 0px 3px 0.5px black;
+    background-color: white;
+}
+
+.selectedGenre {
+    outline-color: var(--genreOutlineColor);
+    background-color: var(--buttonBackgroundColor);
+}
+
+.unSelectedGenre {
+    box-shadow: 1px 1px 4px 0.5px var(--buttonTextColor);
+    outline-color: var(--buttonTextColor);
+}
+
+.genreSelectionContainer {
+    outline-color: var(--genreContainerOutlineColor);
+}
+
+/* -Genre Buttons Stylings- */
+
+/* -Theme Toggle Stylings- */
+
 .lablefortogggle {
 	background-color: var(--backgroundColor) !important;
 	border-radius: 50px;
@@ -298,3 +377,56 @@ button:hover {
 .toggleCheckbox:checked + .lablefortogggle .ball {
 	transform: translateX(20px);
 }
+
+/* -Theme Toggle Stylings- */
+
+/* -Spinner Stylings- */
+
+$offset: 187;
+$duration: 1.4s;
+
+.spinner {
+  animation: rotator $duration linear infinite;
+}
+
+@keyframes rotator {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(270deg); }
+}
+
+.path {
+  stroke-dasharray: $offset;
+  stroke-dashoffset: 0;
+  transform-origin: center;
+  animation:
+    dash $duration ease-in-out infinite, 
+    colors ($duration*4) ease-in-out infinite;
+}
+
+@keyframes colors {
+	0% { stroke: #4285F4; }
+	25% { stroke: #DE3E35; }
+	50% { stroke: #F7C223; }
+	75% { stroke: #1B9A59; }
+  100% { stroke: #4285F4; }
+}
+
+@keyframes dash {
+ 0% { stroke-dashoffset: $offset; }
+ 50% {
+   stroke-dashoffset: $offset/4;
+   transform:rotate(135deg);
+ }
+ 100% {
+   stroke-dashoffset: $offset;
+   transform:rotate(450deg);
+ }
+}
+
+.top-left-50 {
+    top: 50% !important;
+    left: 50% !important;
+    z-index: 25;
+}
+
+/* -Spinner Stylings- */

@@ -4,10 +4,11 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { SecurityQuestionsModalComponent } from 'src/login-page/Modals/security-questions-modal/security-questions-modal.component';
 import { ISecurityQuestionsModel } from 'src/models/securityQuestionsModel';
 import { securityQuestionsMock } from 'src/mockData/securityQuestionsMock';
-import { PasswordIconHelper } from 'src/helpers/passwordIconHelper';
+import { PasswordIconHelper } from 'src/helpers/helpers/passwordIconHelper';
 import { HttpClient } from '@angular/common/http';
 import { LoginService } from 'src/services/loginService';
 import { IUserModel } from 'src/models/userModel';
+import { GlobalStateManagementService } from 'src/services/globalStateManagementService';
 
 @Component({
   selector: 'signUpPage',
@@ -28,7 +29,7 @@ export class SignUpPageComponent {
                  control => this.validateUsername(control, this.credentials),
                  control => this.validatePassword(control)]
   }); 
-  constructor(private readonly modalService: NgbModal, private readonly loginService: LoginService) { }
+  constructor(private readonly modalService: NgbModal, private readonly loginService: LoginService, private readonly globalStateManagementService: GlobalStateManagementService) { }
 
   ngOnInit(): void {
     this.getCredentials();
@@ -61,6 +62,7 @@ export class SignUpPageComponent {
   }
 
   signUp() {
+    this.globalStateManagementService.setSpinner(true);
     console.warn(this.signUpForm.value);
     let newUser: IUserModel = {
       Id: 1,
@@ -74,9 +76,11 @@ export class SignUpPageComponent {
     this.loginService.addUser(newUser).subscribe({
       next: (response) => {
         console.log('Response: ', response);
+        this.globalStateManagementService.setSpinner(false);
       },
       error: (err) => {
         console.error('Error: ', err);
+        this.globalStateManagementService.setSpinner(false);
       },
     })
   }

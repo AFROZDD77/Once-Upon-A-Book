@@ -1,7 +1,10 @@
 import { jsDocComment } from '@angular/compiler';
 import { Component, inject } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { PasswordIconHelper } from 'src/helpers/passwordIconHelper';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { PasswordIconHelper } from 'src/helpers/helpers/passwordIconHelper';
+import { GenreSelectionModalComponent } from 'src/login-page/Modals/genre-selection-modal/genre-selection-modal.component';
+import { GlobalStateManagementService } from 'src/services/globalStateManagementService';
 import { LoginService } from 'src/services/loginService';
 
 @Component({
@@ -16,18 +19,33 @@ export class LogInComponent {
       Password: ['', Validators.required],
   });
 
-  constructor(private readonly loginService: LoginService) {}
+  constructor(private readonly loginService: LoginService, private readonly globalStateManagementService: GlobalStateManagementService, private readonly modalService: NgbModal) {}
   
   logIn() {
+
+
+    this.loginService.gethorrorBooks().subscribe({
+      next: (books) => {
+        console.log("horror books", books)
+      },
+      error: (err) => {
+        console.log("err", err)
+      }
+    })
+
     // TODO: Use EventEmitter with form value
+    this.globalStateManagementService.setSpinner(true);
+    this.modalService.open(GenreSelectionModalComponent, {  size: 'lg', backdrop: 'static', keyboard: false, centered: true, scrollable: true, windowClass: 'blur-background mh-75' })
     console.warn(this.logInForm.value);
     this.loginService.loginuser(this.logInForm.value.Username!, this.logInForm.value.Password!).subscribe({
-      next(response: any) {
+      next: (response: any) => {
         console.log("response", response.token)
-        localStorage.setItem('Jwt_Token', response.token);
+        localStorage.setItem('Jwt_Token', response.token)
+        // this.globalStateManagementService.setSpinner(false);
       },
-      error(err) {
+      error: (err) => {
         console.log(err)
+        // this.globalStateManagementService.setSpinner(false);
       },
     })
   }

@@ -1,11 +1,13 @@
 ﻿
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Once_Upon_A_Book.Models
 {
     public class UserModal
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         [Required]
         public string Username { get; set; } = string.Empty;

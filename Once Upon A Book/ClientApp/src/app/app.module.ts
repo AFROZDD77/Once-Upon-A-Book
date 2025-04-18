@@ -12,6 +12,9 @@ import { LogInComponent } from 'src/login-page/Components/log-in/log-in.componen
 import { FooterComponent } from './components/footer/footer.component';
 import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
 import { JwtInterceptor } from './interceptors/JwtInterceptor';
+import { GlobalStateManagementService } from 'src/services/globalStateManagementService';
+import { GenreSelectionModalComponent } from 'src/login-page/Modals/genre-selection-modal/genre-selection-modal.component';
+import { GenreSearchPipe } from 'src/helpers/pipes/genreSearchPipe';
 
 @NgModule({
   declarations: [
@@ -20,7 +23,9 @@ import { JwtInterceptor } from './interceptors/JwtInterceptor';
     LogInComponent,
     HeaderComponent,
     SecurityQuestionsModalComponent,
-    FooterComponent
+    FooterComponent,
+    GenreSearchPipe,
+    GenreSelectionModalComponent
   ],
   imports: [
     BrowserModule,
@@ -32,6 +37,7 @@ import { JwtInterceptor } from './interceptors/JwtInterceptor';
   providers: [
     ThemeService,
     LoginService,
+    GlobalStateManagementService,
     HttpClient,
     {
       provide: HTTP_INTERCEPTORS,

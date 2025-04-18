@@ -1,7 +1,6 @@
 import { Component, EventEmitter, inject, Output } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { LoginService } from 'src/services/loginService';
 
 @Component({
   selector: 'app-security-questions-modal',
