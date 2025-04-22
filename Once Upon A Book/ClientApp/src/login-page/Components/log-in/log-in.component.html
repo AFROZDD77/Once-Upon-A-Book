@@ -32,6 +32,7 @@
             <h5>Don't have an account? <a routerLink="/signUp">Sign Up here→</a></h5>
         </div>
         <div>
-            <button (click)="testJWT()"></button>
+            <input [(ngModel)]="genre" class="form-control" placeholder="Enter Genre" type="text" maxlength="20"/>
+            <button class="btn btn-primary" (click)="insertGenre()">Insert Genre</button>
         </div>
     </fieldset>

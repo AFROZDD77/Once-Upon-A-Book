@@ -15,6 +15,8 @@ import { JwtInterceptor } from './interceptors/JwtInterceptor';
 import { GlobalStateManagementService } from 'src/services/globalStateManagementService';
 import { GenreSelectionModalComponent } from 'src/login-page/Modals/genre-selection-modal/genre-selection-modal.component';
 import { GenreSearchPipe } from 'src/helpers/pipes/genreSearchPipe';
+import { GenreSortPipe } from 'src/helpers/pipes/genreSortPipe';
+import { OpenLibraryService } from 'src/services/openLibraryService';
 
 @NgModule({
   declarations: [
@@ -25,6 +27,7 @@ import { GenreSearchPipe } from 'src/helpers/pipes/genreSearchPipe';
     SecurityQuestionsModalComponent,
     FooterComponent,
     GenreSearchPipe,
+    GenreSortPipe,
     GenreSelectionModalComponent
   ],
   imports: [
@@ -37,6 +40,7 @@ import { GenreSearchPipe } from 'src/helpers/pipes/genreSearchPipe';
   providers: [
     ThemeService,
     LoginService,
+    OpenLibraryService,
     GlobalStateManagementService,
     HttpClient,
     {

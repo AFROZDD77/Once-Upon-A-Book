@@ -17,6 +17,8 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<UserDbContext>(options => options.UseSqlite(configuration.GetConnectionString("Sqlite3")));
+builder.Services.AddDbContext<GenreDbContext>(options => options.UseSqlite(configuration.GetConnectionString("Sqlite3")));
+builder.Services.AddDbContext<UserFavoritesDbContext>(options => options.UseSqlite(configuration.GetConnectionString("Sqlite3")));
 builder.Services.AddCors(options =>
 {
     options.AddPolicy(name: MyAllowSpecificOrigins,
@@ -53,11 +55,12 @@ if (!app.Environment.IsDevelopment())
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 } else {
+    app.UseDeveloperExceptionPage();
     app.UseSwagger();
     app.UseSwaggerUI(options =>
     {
-        //options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
-        options.RoutePrefix = string.Empty;
+        options.SwaggerEndpoint("/swagger/v1/swagger.json", "My New App");
+        //options.RoutePrefix = string.Empty;
     });
 }
 

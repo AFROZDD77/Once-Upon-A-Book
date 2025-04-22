@@ -4,16 +4,16 @@
     </div>
     <div class="modal-body overflow-hidden">
         <div class="d-flex flex-column">
-            <div class="d-flex flew-grow justify-content-end mb-4">
-                <input type="text" placeholder="search for genre" class="form-control w-50 position-relative" [(ngModel)]="searchText"/>
+            <div class="d-flex flew-grow justify-content-end mb-3">
+                <input type="text" placeholder="search for a genre" class="form-control w-50 position-relative" [(ngModel)]="searchText"/>
                 <div class="position-absolute d-flex flew-grow flex-row-reverse">
                     <i class="bi bi-search fs-4 pt-1 pe-2 cursor-pointer"></i>
                 </div>
             </div>
-            <div class="d-flex flew-grow flex-column mb-4">
+            <div class="d-flex flew-grow flex-column mb-3">
                 <div class="d-flex flex-row align-items-center">
                     <h5 class="mb-0 mw-fit-content">Selected Genres:</h5>
-                    <div class="d-flex">
+                    <div class="d-flex pt-2 pb-2 overflow-auto">
                         <div *ngFor="let selectedGenre of selectedGenres" class="d-flex align-items-center outline-standard-style selectedGenre rounded-pill mw-fit-content mx-2">
                             <span class="mt-0 ps-3">{{selectedGenre.genre}}</span>
                             <div class="pe-2 h-2rem">
@@ -22,11 +22,11 @@
                         </div>
                     </div>
                 </div>
-                <span *ngIf="selectedGenres.length < 3" class="warningText d-flex mt-2">Please select atleat 3 genres<small class="d-contents">*</small></span>
+                <span [ngClass]="selectedGenres.length < 3 ? 'visible' : 'invisible'" class="warningText d-flex mt-0">Please select atleast 3 genres<small class="d-contents">*</small></span>
             </div>
             <div class="d-flex align-items-center flex-wrap justify-content-between row-gap-4 column-gap-3 h-35vh p-3 outline-standard-style rounded-3 overflow-auto genreSelectionContainer">
                 <ng-container *ngIf="(genres | genreSearchResult: searchText) as result">
-                    <div *ngFor="let genre of result" [ngClass]="genre.isSelected ? 'selectedGenre' : 'unSelectedGenre'" class="d-flex align-items-center outline-standard-style rounded-pill cursor-pointer" (click)="genre.isSelected = !genre.isSelected; updateSelectedGenres()" (keydown)="genre.isSelected = !genre.isSelected; updateSelectedGenres()">
+                    <div *ngFor="let genre of result | genreSortResult" [ngClass]="genre.isSelected ? 'selectedGenre' : 'unSelectedGenre'" class="d-flex align-items-center outline-standard-style rounded-pill cursor-pointer" (click)="genre.isSelected = !genre.isSelected; updateSelectedGenres()" (keydown)="genre.isSelected = !genre.isSelected; updateSelectedGenres()">
                         <span class="mt-0 py-1 pe-2 ps-3">{{genre.genre}}</span>
                         <div class="pe-2">
                             <span [ngClass]="genre.isSelected ? 'selectedDot' : 'unSelectedDot'" class="mt-0 dot rounded-circle outline-standard-style"></span>

@@ -6,6 +6,7 @@ import { PasswordIconHelper } from 'src/helpers/helpers/passwordIconHelper';
 import { GenreSelectionModalComponent } from 'src/login-page/Modals/genre-selection-modal/genre-selection-modal.component';
 import { GlobalStateManagementService } from 'src/services/globalStateManagementService';
 import { LoginService } from 'src/services/loginService';
+import { OpenLibraryService } from 'src/services/openLibraryService';
 
 @Component({
   selector: 'logInPage',
@@ -14,17 +15,18 @@ import { LoginService } from 'src/services/loginService';
 })
 export class LogInComponent {
   private readonly formbuilder = inject(FormBuilder);
+  genre: string = "";
   logInForm = this.formbuilder.group({
       Username: ['', Validators.required],
       Password: ['', Validators.required],
   });
 
-  constructor(private readonly loginService: LoginService, private readonly globalStateManagementService: GlobalStateManagementService, private readonly modalService: NgbModal) {}
+  constructor(private readonly loginService: LoginService, private readonly openLibraryService: OpenLibraryService,  private readonly globalStateManagementService: GlobalStateManagementService, private readonly modalService: NgbModal) {}
   
   logIn() {
 
 
-    this.loginService.gethorrorBooks().subscribe({
+    this.openLibraryService.gethorrorBooks().subscribe({
       next: (books) => {
         console.log("horror books", books)
       },
@@ -50,12 +52,13 @@ export class LogInComponent {
     })
   }
 
-  testJWT() {
-    this.loginService.testJWT().subscribe({
-      next(value) {
-        console.log("Test JWT", value)
+  insertGenre() {
+    this.loginService.insertGenre(this.genre).subscribe({
+      next: (value) => {
+        console.log("insertGenred", this.genre)
+        console.log("is success?", value)
       },
-      error(err) {
+      error: (err) => {
         console.log("err", err)
       },
     })

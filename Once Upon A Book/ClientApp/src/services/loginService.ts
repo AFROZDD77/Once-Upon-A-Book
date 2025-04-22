@@ -29,10 +29,17 @@ export class LoginService {
         return this.http.get('https://localhost:44306/api/home/testJWT');
     }
 
-    gethorrorBooks() {
-        const headers = new HttpHeaders({
-            "X-User-Agent": "MyAppName/1.0 (myemail@example.com)"
-        });
-        return this.http.get('https://openlibrary.org/search.json?title=the+lord+of+the+rings&limit=5&offset=0&fields=subject,title,cover_i,first_publish_year,ratings_average,ratings_count,number_of_pages_median');
+    insertGenre(genre: string) {
+     const body = JSON.stringify(genre);
+        return this.http.post<string>("https://localhost:44306/api/home/insertGenre", body);
+    }
+
+    getGenres(): Observable<Array<{ id: number, genre: string }>>  {
+        return this.http.get<Array<{ id: number, genre: string }>>("https://localhost:44306/api/home/getGenres");
+    } 
+
+    saveFavoriteGenres(id: number[]) {
+     const body = JSON.stringify(id);
+        return this.http.post("https://localhost:44306/api/home/saveFavoriteGenres", body);
     }
  }

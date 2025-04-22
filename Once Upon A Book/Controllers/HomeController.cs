@@ -18,14 +18,16 @@ namespace Once_Upon_A_Book.Controllers
         private readonly ILogger<HomeController> _logger;
         //private readonly UserRepo _userRepo;
         private readonly UserDbContext _userDbContext;
+        private readonly GenreDbContext _genreDbContext;
         private readonly IConfiguration _configuration;
 
-        public HomeController(ILogger<HomeController> logger, UserDbContext userDbContext, IConfiguration configuration)
+        public HomeController(ILogger<HomeController> logger, UserDbContext userDbContext, IConfiguration configuration, GenreDbContext genreDbContext)
         {
             _logger = logger;
             //_userRepo = userRepo;
             _userDbContext = userDbContext;
             _configuration = configuration;
+            _genreDbContext = genreDbContext;
         }
 
         [HttpGet]
@@ -51,7 +53,7 @@ namespace Once_Upon_A_Book.Controllers
 
         [HttpPost]
         [Route("login")]
-        public async Task<IActionResult> loginUser([FromBody] UserCredentialsModel userModel) 
+        public async Task<IActionResult> loginUser([FromBody] UserCredentialsModel userModel)
         {
             if (userModel.Username == null || userModel.Password == null)
             {
@@ -100,10 +102,11 @@ namespace Once_Upon_A_Book.Controllers
         [Route("saveUser")]
         public async Task<IActionResult> SaveUser([FromBody] UserModal userModal)
         {
-            if (userModal == null) 
+            if (userModal == null)
             {
                 return BadRequest();
-            } else
+            }
+            else
             {
                 try
                 {
@@ -111,7 +114,8 @@ namespace Once_Upon_A_Book.Controllers
                     var result = await _userDbContext.SaveChangesAsync();
                     return Ok(result > 0);
                 }
-                catch (Exception ex) {
+                catch (Exception ex)
+                {
                     throw ex;
                 }
             }
@@ -155,6 +159,40 @@ namespace Once_Upon_A_Book.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        [HttpPost]
+        [Route("insertGenre")]
+        public async Task<IActionResult> insertGenre([FromBody] string genre)
+        {
+            var genreModal = new GenreModal()
+            {
+                Genre = genre
+            };
+            try
+            {
+                _genreDbContext.Genres.Add(genreModal);
+                var result = await _genreDbContext.SaveChangesAsync();
+                return Ok(result > 0);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+
+        [HttpGet]
+        [Route("getGenres")]
+        public async Task<IActionResult> getGenres()
+        {
+            try
+            {
+                var result = await _genreDbContext.Genres.ToListAsync();
+                return Ok(result);
+
+            }
+            catch (Exception ex) { throw ex; }
         }
     }
 }

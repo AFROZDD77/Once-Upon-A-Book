@@ -193,7 +193,7 @@ input.validInput {
 }
 
 input.validInput:focus {
-    box-shadow: var(--successGreen) 0px 0px 0.25rem 0.2rem !important;
+    box-shadow: var(--successGreen) 0px 0px 0.2rem 0.1rem !important;
 }
 
 input.inValidInput {
@@ -207,15 +207,15 @@ input.inValidInput {
 }
 
 input.inValidInput:focus {
-    box-shadow: var(--warningRed) 0px 0px 0.25rem 0.2rem !important;
+    box-shadow: var(--warningRed) 0px 0px 0.2rem 0.1rem !important;
 }
 
 input:focus {
-    box-shadow: var(--inputOutlineColor) 0px 0px 0.25rem 0.2rem !important;
+    box-shadow: var(--inputOutlineColor) 0px 0px 0.2rem 0.1rem !important;
 }
 
 input:active {
-    box-shadow: var(--inputOutlineColor) 0px 0px 0.25rem 0.2rem !important;
+    box-shadow: var(--inputOutlineColor) 0px 0px 0.2rem 0.1rem !important;
 }
 
 button {
@@ -234,7 +234,7 @@ button {
 button:hover {
     background-color: var(--buttonBackgroundColor) !important;
     border-color: var(--buttonHighlightColor) !important;
-    box-shadow: var(--buttonHighlightColor) 0px 0px 0.25rem 0.2rem !important;
+    box-shadow: var(--buttonHighlightColor) 0px 0px 0.2rem 0.1rem !important;
     color: var(--buttonTextColor) !important;
 }
 
@@ -346,7 +346,7 @@ button:hover {
 }
 
 .unSelectedGenre {
-    box-shadow: 1px 1px 4px 0.5px var(--buttonTextColor);
+    box-shadow: 2px 2px 4px 1px var(--buttonTextColor);
     outline-color: var(--buttonTextColor);
 }
 

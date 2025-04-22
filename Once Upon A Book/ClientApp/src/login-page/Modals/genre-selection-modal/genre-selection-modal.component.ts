@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { firstValueFrom, Observable } from 'rxjs';
+import { LoginService } from 'src/services/loginService';
 
 @Component({
   selector: 'app-genre-selection-modal',
@@ -7,121 +9,21 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrl: './genre-selection-modal.component.scss'
 })
 export class GenreSelectionModalComponent {
-  constructor(private readonly activeModal: NgbActiveModal) {}
+  constructor(private readonly activeModal: NgbActiveModal, private readonly loginService: LoginService) {}
   searchText: string = '';
-  genres: Array<{ genre: string, isSelected: boolean }> = [
-    { genre: "Action", isSelected: false },
-    { genre: "Adventure", isSelected: false },
-    { genre: "Animation", isSelected: false },
-    { genre: "Biography", isSelected: false },
-    { genre: "Comedy", isSelected: false },
-    { genre: "Crime", isSelected: false },
-    { genre: "Documentary", isSelected: false },
-    { genre: "Drama", isSelected: false },
-    { genre: "Family", isSelected: false },
-    { genre: "Fantasy", isSelected: false },
-    { genre: "Film-Noir", isSelected: false },
-    { genre: "Game-Show", isSelected: false },
-    { genre: "History", isSelected: false },
-    { genre: "Horror", isSelected: false },
-    { genre: "Musical", isSelected: false },
-    { genre: "Mystery", isSelected: false },
-    { genre: "News", isSelected: false },
-    { genre: "Reality-TV", isSelected: false },
-    { genre: "Romance", isSelected: false },
-    { genre: "Sci-Fi", isSelected: false },
-    { genre: "Sport", isSelected: false },
-    { genre: "Talk-Show", isSelected: false },
-    { genre: "Thriller", isSelected: false },
-    { genre: "War", isSelected: false },
-    { genre: "Western", isSelected: false },
-    { genre: "Anime", isSelected: false },
-    { genre: "Cyberpunk", isSelected: false },
-    { genre: "Steampunk", isSelected: false },
-    { genre: "Superhero", isSelected: false },
-    { genre: "Martial Arts", isSelected: false },
-    { genre: "Psychological", isSelected: false },
-    { genre: "Slice of Life", isSelected: false },
-    { genre: "Mecha", isSelected: false },
-    { genre: "Space Opera", isSelected: false },
-    { genre: "Historical Fiction", isSelected: false },
-    { genre: "Satire", isSelected: false },
-    { genre: "Tragedy", isSelected: false },
-    { genre: "Epic", isSelected: false },
-    { genre: "Urban Fantasy", isSelected: false },
-    { genre: "Paranormal", isSelected: false },
-    { genre: "Gothic", isSelected: false },
-    { genre: "Dystopian", isSelected: false },
-    { genre: "Utopian", isSelected: false },
-    { genre: "Post-Apocalyptic", isSelected: false },
-    { genre: "Spy", isSelected: false },
-    { genre: "Espionage", isSelected: false },
-    { genre: "Legal Drama", isSelected: false },
-    { genre: "Medical Drama", isSelected: false },
-    { genre: "Teen Drama", isSelected: false },
-    { genre: "Coming-of-Age", isSelected: false },
-    { genre: "Dark Comedy", isSelected: false },
-    { genre: "Romantic Comedy", isSelected: false },
-    { genre: "Science Fantasy", isSelected: false },
-    { genre: "Speculative Fiction", isSelected: false },
-    { genre: "Surrealism", isSelected: false },
-    { genre: "Absurdist Fiction", isSelected: false },
-    { genre: "Alternate History", isSelected: false },
-    { genre: "Anthology", isSelected: false },
-    { genre: "Apocalyptic", isSelected: false },
-    { genre: "Arthouse", isSelected: false },
-    { genre: "Black Comedy", isSelected: false },
-    { genre: "Buddy", isSelected: false },
-    { genre: "Caper", isSelected: false },
-    { genre: "Chick Flick", isSelected: false },
-    { genre: "Children's", isSelected: false },
-    { genre: "Classic", isSelected: false },
-    { genre: "Conspiracy", isSelected: false },
-    { genre: "Courtroom Drama", isSelected: false },
-    { genre: "Cult", isSelected: false },
-    { genre: "Dance", isSelected: false },
-    { genre: "Disaster", isSelected: false },
-    { genre: "Erotic", isSelected: false },
-    { genre: "Experimental", isSelected: false },
-    { genre: "Fairy Tale", isSelected: false },
-    { genre: "Family Saga", isSelected: false },
-    { genre: "Fantasy Adventure", isSelected: false },
-    { genre: "Fictional Biography", isSelected: false },
-    { genre: "Found Footage", isSelected: false },
-    { genre: "Ghost Story", isSelected: false },
-    { genre: "Heist", isSelected: false },
-    { genre: "Heroic Bloodshed", isSelected: false },
-    { genre: "Historical", isSelected: false },
-    { genre: "Holiday", isSelected: false },
-    { genre: "Horror Comedy", isSelected: false },
-    { genre: "Indie", isSelected: false },
-    { genre: "Jidaigeki", isSelected: false },
-    { genre: "Kaiju", isSelected: false },
-    { genre: "LGBTQ+", isSelected: false },
-    { genre: "Mockumentary", isSelected: false },
-    { genre: "Monster", isSelected: false },
-    { genre: "Mystery Thriller", isSelected: false },
-    { genre: "Neo-Noir", isSelected: false },
-    { genre: "Parody", isSelected: false },
-    { genre: "Police Procedural", isSelected: false },
-    { genre: "Political Thriller", isSelected: false },
-    { genre: "Psychological Thriller", isSelected: false },
-    { genre: "Road Movie", isSelected: false },
-    { genre: "Romantic Drama", isSelected: false },
-    { genre: "Science Fiction", isSelected: false },
-    { genre: "Slasher", isSelected: false },
-    { genre: "Space Western", isSelected: false },
-    { genre: "Sports Drama", isSelected: false },
-    { genre: "Supernatural", isSelected: false },
-    { genre: "Sword and Sorcery", isSelected: false },
-    { genre: "Teen Comedy", isSelected: false },
-    { genre: "Time Travel", isSelected: false },
-    { genre: "Urban Legend", isSelected: false },
-    { genre: "Vampire", isSelected: false },
-    { genre: "Zombie", isSelected: false }
-  ];
-  selectedGenres:  Array<{ genre: string, isSelected: boolean }> = [];
+  genres: Array<{ id: number, genre: string, isSelected: boolean }> = [];
+  selectedGenres:  Array<{ id: number, genre: string, isSelected: boolean }> = [];
   
+  async ngOnInit() {
+    const genreData = await this.getGenresData();
+    this.genres = genreData.map((x) => {
+      return { id: x.id, genre: x.genre, isSelected: false };
+    });
+  }
+  
+  private async getGenresData() {
+    return await firstValueFrom(this.loginService.getGenres());
+  }
 
   closeModal() {
     this.activeModal.close();
