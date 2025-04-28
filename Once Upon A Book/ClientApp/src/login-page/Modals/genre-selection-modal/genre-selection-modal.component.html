@@ -1,45 +1,201 @@
 <div class="modal-content">
     <div class="modal-header">
-        <h3>Select Your Favourite Genre</h3>
+        <div class="nav nav-tabs rounded-pill p-1 border border-2 border-black" role="tablist">
+            <div class="nav-item">
+                <a role="tab" data-bs-toggle="tab" class="nav-link active rounded-pill text-decoration-none" href="#genreSelection" aria-selected="true">Genre Selection</a>
+            </div>
+            <div class="nav-item">
+                <a role="tab" data-bs-toggle="tab" class="nav-link rounded-pill text-decoration-none"  href="#bookSelection" aria-selected="false">Book Selection</a>
+            </div>
+            <div class="nav-item">
+                <a role="tab" data-bs-toggle="tab" class="nav-link rounded-pill text-decoration-none"  href="#authorSelection" aria-selected="false">Author Selection</a>
+            </div>
+        </div>
     </div>
     <div class="modal-body overflow-hidden">
-        <div class="d-flex flex-column">
-            <div class="d-flex flew-grow justify-content-end mb-3">
-                <input type="text" placeholder="search for a genre" class="form-control w-50 position-relative" [(ngModel)]="searchText"/>
-                <div class="position-absolute d-flex flew-grow flex-row-reverse">
-                    <i class="bi bi-search fs-4 pt-1 pe-2 cursor-pointer"></i>
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="genreSelection" role="tabpanel">
+                <div class="d-flex flew-grow justify-content-between mb-3">
+                    <div class="d-flex align-items-center">
+                        <h3 class="mb-0"> Select Your Favorite Genres</h3>
+                        <div class="ps-1 pt-1" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Please Select Generes for better recmomendations">
+                            <i class="bi bi-info-circle"></i>
+                        </div>
+                    </div>
+                    <div class="d-flex w-25 position-relative">
+                        <input type="text" placeholder="search for a genre" class="form-control" [(ngModel)]="searchText"/>
+                        <div class="position-absolute d-flex w-100 flex-row-reverse">
+                            <i class="bi bi-search fs-4 pt-1 pe-2 cursor-pointer"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex flew-grow flex-column mb-3">
+                    <div class="d-flex flex-row align-items-center">
+                        <h5 class="mb-0 mw-fit-content">Selected Genres:</h5>
+                        <div class="d-flex pt-2 pb-2 overflow-auto">
+                            <div *ngFor="let selectedGenre of selectedGenres" class="d-flex align-items-center outline-standard-style selectedGenre rounded-pill mw-fit-content mx-2">
+                                <span class="mt-0 ps-3">{{selectedGenre.genre}}</span>
+                                <div class="pe-2 h-2rem">
+                                    <i class="bi bi-x fs-4 cursor-pointer" (click)="selectedGenre.isSelected = !selectedGenre.isSelected; updateSelectedGenres()" (keydown)="selectedGenre.isSelected = !selectedGenre.isSelected; updateSelectedGenres()"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <span [ngClass]="selectedGenres.length < 3 ? 'visible' : 'invisible'" class="warningText d-flex mt-0">Please select atleast 3 genres<small class="d-contents">*</small></span>
+                </div>
+                <div class="d-flex align-items-center flex-wrap justify-content-between row-gap-4 column-gap-3 h-35vh p-3 outline-standard-style rounded-3 overflow-auto genreSelectionContainer">
+                    <ng-container *ngIf="(genres | genreSearchResult: searchText) as result">
+                        <div *ngFor="let genre of result | genreSortResult" [ngClass]="genre.isSelected ? 'selectedGenre' : 'unSelectedGenre'" class="d-flex align-items-center outline-standard-style rounded-pill cursor-pointer" (click)="genre.isSelected = !genre.isSelected; updateSelectedGenres()" (keydown)="genre.isSelected = !genre.isSelected; updateSelectedGenres()">
+                            <span class="mt-0 py-1 pe-2 ps-3">{{genre.genre}}</span>
+                            <div class="pe-2">
+                                <span [ngClass]="genre.isSelected ? 'selectedDot' : 'unSelectedDot'" class="mt-0 dot rounded-circle outline-standard-style"></span>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-center flew-grow mb-4" *ngIf="result.length === 0">
+                            <span class="infoText fs-3">No results found!</span>
+                        </div>
+                    </ng-container>
                 </div>
             </div>
-            <div class="d-flex flew-grow flex-column mb-3">
-                <div class="d-flex flex-row align-items-center">
-                    <h5 class="mb-0 mw-fit-content">Selected Genres:</h5>
-                    <div class="d-flex pt-2 pb-2 overflow-auto">
-                        <div *ngFor="let selectedGenre of selectedGenres" class="d-flex align-items-center outline-standard-style selectedGenre rounded-pill mw-fit-content mx-2">
-                            <span class="mt-0 ps-3">{{selectedGenre.genre}}</span>
-                            <div class="pe-2 h-2rem">
-                                <i class="bi bi-x fs-4 cursor-pointer" (click)="selectedGenre.isSelected = !selectedGenre.isSelected; updateSelectedGenres()" (keydown)="selectedGenre.isSelected = !selectedGenre.isSelected; updateSelectedGenres()"></i>
+            <div class="tab-pane fade" id="bookSelection" role="tabpanel">
+                <div class="d-flex">
+                    <div class="d-flex flew-grow">
+                        <div class="d-flex flew-grow secondary-bg-color justify-content-center align-items-center px-3 pt-2 pb-0 nav nav-tabs fs-5 border-0" role="tablist">
+                            <div class="nav-item">
+                                <a role="tab" class="nav-link active pb-3 text-decoration-none" data-bs-toggle="tab" href="#home" aria-controls="home" aria-selected="true">
+                                    Horror
+                                </a>
+                            </div>
+                            <div class="nav-item">
+                                <a role="tab" class="nav-link pb-3 text-decoration-none" data-bs-toggle="tab" href="#profile" aria-controls="profile" aria-selected="false">
+                                    adventure
+                                </a>
+                            </div>
+                            <div class="nav-item">
+                                <a role="tab" class="nav-link pb-3 text-decoration-none" data-bs-toggle="tab" href="#contact" aria-controls="contact" aria-selected="false">
+                                    comedy
+                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
-                <span [ngClass]="selectedGenres.length < 3 ? 'visible' : 'invisible'" class="warningText d-flex mt-0">Please select atleast 3 genres<small class="d-contents">*</small></span>
-            </div>
-            <div class="d-flex align-items-center flex-wrap justify-content-between row-gap-4 column-gap-3 h-35vh p-3 outline-standard-style rounded-3 overflow-auto genreSelectionContainer">
-                <ng-container *ngIf="(genres | genreSearchResult: searchText) as result">
-                    <div *ngFor="let genre of result | genreSortResult" [ngClass]="genre.isSelected ? 'selectedGenre' : 'unSelectedGenre'" class="d-flex align-items-center outline-standard-style rounded-pill cursor-pointer" (click)="genre.isSelected = !genre.isSelected; updateSelectedGenres()" (keydown)="genre.isSelected = !genre.isSelected; updateSelectedGenres()">
-                        <span class="mt-0 py-1 pe-2 ps-3">{{genre.genre}}</span>
-                        <div class="pe-2">
-                            <span [ngClass]="genre.isSelected ? 'selectedDot' : 'unSelectedDot'" class="mt-0 dot rounded-circle outline-standard-style"></span>
+                <div class="modal-body">
+                    <div class="d-flex flew-grow justify-content-between mb-3">
+                        <div class="d-flex align-items-center">
+                            <h3 class="mb-0"> Rate Your Favorite Books</h3>
+                            <i class="bi bi-info-circle ps-1 pt-1" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Please Select Generes for better recmomendations"></i>
+                        </div>
+                        <div class="d-flex w-25 position-relative">
+                            <input type="text" placeholder="search for a genre" class="form-control" [(ngModel)]="searchText"/>
+                            <div class="position-absolute d-flex w-100 flex-row-reverse">
+                                <i class="bi bi-search fs-4 pt-1 pe-2 cursor-pointer"></i>
+                            </div>
                         </div>
                     </div>
-                    <div class="d-flex justify-content-center flew-grow mb-4" *ngIf="result.length === 0">
-                        <span class="infoText fs-3">No results found!</span>
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                            <div class="d-flex overflow-auto">
+                                <div class="d-flex border">
+                                    <div class="d-flex">
+                                        <div class="d-flex">
+                                            <img src="src/assets/images/SignUp_Page_ Image.png">
+                                            <div>
+                                                <h5>The Devil wears Prada</h5>
+                                                <span>by Laurten Wierberger</span>
+                                                <p>Read Only Ratings</p>
+                                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus officiis non beatae harum numquam itaque, quibusdam doloremque blanditiis dolores consequatur accusantium aliquam est error optio vero voluptates nulla quaerat culpa.
+                                                Consequatur exercitationem odit obcaecati beatae atque qui rem ea at commodi natus? Debitis sequi expedita quis quos omnis perferendis itaque, velit eius architecto accusantium earum dignissimos molestias voluptates ipsa harum!0</p>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex">
+                                            <span>Rate this book:</span>
+                                            <h1>Dynamic Ratings</h1>
+                                            <button>Add to Favorites!</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="d-flex border">
+                                    <div class="d-flex">
+                                        <div class="d-flex">
+                                            <img src="src/assets/images/SignUp_Page_ Image.png">
+                                            <div>
+                                                <h5>The Devil wears Prada</h5>
+                                                <span>by Laurten Wierberger</span>
+                                                <p>Read Only Ratings</p>
+                                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus officiis non beatae harum numquam itaque, quibusdam doloremque blanditiis dolores consequatur accusantium aliquam est error optio vero voluptates nulla quaerat culpa.
+                                                Consequatur exercitationem odit obcaecati beatae atque qui rem ea at commodi natus? Debitis sequi expedita quis quos omnis perferendis itaque, velit eius architecto accusantium earum dignissimos molestias voluptates ipsa harum!0</p>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex">
+                                            <span>Rate this book:</span>
+                                            <h1>Dynamic Ratings</h1>
+                                            <button>Add to Favorites!</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="d-flex border">
+                                    <div class="d-flex">
+                                        <div class="d-flex">
+                                            <img src="src/assets/images/SignUp_Page_ Image.png">
+                                            <div>
+                                                <h5>The Devil wears Prada</h5>
+                                                <span>by Laurten Wierberger</span>
+                                                <p>Read Only Ratings</p>
+                                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus officiis non beatae harum numquam itaque, quibusdam doloremque blanditiis dolores consequatur accusantium aliquam est error optio vero voluptates nulla quaerat culpa.
+                                                Consequatur exercitationem odit obcaecati beatae atque qui rem ea at commodi natus? Debitis sequi expedita quis quos omnis perferendis itaque, velit eius architecto accusantium earum dignissimos molestias voluptates ipsa harum!0</p>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex">
+                                            <span>Rate this book:</span>
+                                            <h1>Dynamic Ratings</h1>
+                                            <button>Add to Favorites!</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="d-flex border">
+                                    <div class="d-flex">
+                                        <div class="d-flex">
+                                            <img src="src/assets/images/SignUp_Page_ Image.png">
+                                            <div>
+                                                <h5>The Devil wears Prada</h5>
+                                                <span>by Laurten Wierberger</span>
+                                                <p>Read Only Ratings</p>
+                                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus officiis non beatae harum numquam itaque, quibusdam doloremque blanditiis dolores consequatur accusantium aliquam est error optio vero voluptates nulla quaerat culpa.
+                                                Consequatur exercitationem odit obcaecati beatae atque qui rem ea at commodi natus? Debitis sequi expedita quis quos omnis perferendis itaque, velit eius architecto accusantium earum dignissimos molestias voluptates ipsa harum!0</p>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex">
+                                            <span>Rate this book:</span>
+                                            <h1>Dynamic Ratings</h1>
+                                            <button>Add to Favorites!</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">adventure</div>
+                        <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">comedy</div>
                     </div>
-                </ng-container>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="authorSelection" role="tabpanel">
+                <div class="d-flex flew-grow justify-content-between mb-3">
+                    <div class="d-flex align-items-center">
+                        <h3 class="mb-0"> Select Your Favorite Authors</h3>
+                        <i class="bi bi-info-circle ps-1 pt-1" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Please Select Generes for better recmomendations"></i>
+                    </div>
+                    <div class="d-flex w-25 position-relative">
+                        <input type="text" placeholder="search for a genre" class="form-control" [(ngModel)]="searchText"/>
+                        <div class="position-absolute d-flex w-100 flex-row-reverse">
+                            <i class="bi bi-search fs-4 pt-1 pe-2 cursor-pointer"></i>
+                        </div>
+                    </div>
+                </div>
+                Favorite Authors
             </div>
         </div>
     </div>
     <div class="modal-footer">
-        <button class="btn btn-primary" [disabled]="selectedGenres.length < 3" (click)="closeModal()">Next</button>
+        <button class="btn btn-primary" (click)="closeModal()">Next</button>
     </div>
 </div>

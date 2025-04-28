@@ -37,7 +37,7 @@ export class LogInComponent {
 
     // TODO: Use EventEmitter with form value
     this.globalStateManagementService.setSpinner(true);
-    this.modalService.open(GenreSelectionModalComponent, {  size: 'lg', backdrop: 'static', keyboard: false, centered: true, scrollable: true, windowClass: 'blur-background mh-75' })
+    this.modalService.open(GenreSelectionModalComponent, {  size: 'lg', backdrop: 'static', keyboard: false, centered: true, scrollable: true, windowClass: 'blur-background mh-75 custom-modal-width' })
     console.warn(this.logInForm.value);
     this.loginService.loginuser(this.logInForm.value.Username!, this.logInForm.value.Password!).subscribe({
       next: (response: any) => {

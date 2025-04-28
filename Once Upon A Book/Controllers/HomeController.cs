@@ -194,5 +194,12 @@ namespace Once_Upon_A_Book.Controllers
             }
             catch (Exception ex) { throw ex; }
         }
+
+        //[HttpPost]
+        //[Route("saveFavoriteGenres")]
+        //public async Task<IActionResult> saveFavoriteGenres([FromBody] List<int> favGenres)
+        //{
+
+        //}
     }
 }

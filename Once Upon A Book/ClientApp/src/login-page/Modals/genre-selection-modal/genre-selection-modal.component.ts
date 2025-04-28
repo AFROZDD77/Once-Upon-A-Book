@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { firstValueFrom, Observable } from 'rxjs';
 import { LoginService } from 'src/services/loginService';
+import { RateBooksModalComponent } from '../rate-books-modal/rate-books-modal.component';
 
 @Component({
   selector: 'app-genre-selection-modal',
@@ -9,7 +10,7 @@ import { LoginService } from 'src/services/loginService';
   styleUrl: './genre-selection-modal.component.scss'
 })
 export class GenreSelectionModalComponent {
-  constructor(private readonly activeModal: NgbActiveModal, private readonly loginService: LoginService) {}
+  constructor(private readonly activeModal: NgbActiveModal, private readonly loginService: LoginService, private readonly modalService: NgbModal) {}
   searchText: string = '';
   genres: Array<{ id: number, genre: string, isSelected: boolean }> = [];
   selectedGenres:  Array<{ id: number, genre: string, isSelected: boolean }> = [];
@@ -27,6 +28,7 @@ export class GenreSelectionModalComponent {
 
   closeModal() {
     this.activeModal.close();
+    this.modalService.open(RateBooksModalComponent, { size: 'xl', backdrop: 'static', keyboard: false, scrollable: true, centered: true, windowClass: 'blur-background' });
   }
 
   updateSelectedGenres() {

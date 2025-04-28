@@ -17,6 +17,7 @@ import { GenreSelectionModalComponent } from 'src/login-page/Modals/genre-select
 import { GenreSearchPipe } from 'src/helpers/pipes/genreSearchPipe';
 import { GenreSortPipe } from 'src/helpers/pipes/genreSortPipe';
 import { OpenLibraryService } from 'src/services/openLibraryService';
+import { RateBooksModalComponent } from 'src/login-page/Modals/rate-books-modal/rate-books-modal.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { OpenLibraryService } from 'src/services/openLibraryService';
     LogInComponent,
     HeaderComponent,
     SecurityQuestionsModalComponent,
+    RateBooksModalComponent,
     FooterComponent,
     GenreSearchPipe,
     GenreSortPipe,

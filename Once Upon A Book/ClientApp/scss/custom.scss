@@ -239,13 +239,13 @@ button:hover {
 }
 
 .headerClass {
+    @extend .secondary-bg-color;
     height: 7vh !important;
-    background-color: var(--secondaryBackgroundColor) !important;
 }
 
 .footerClass {
+    @extend .secondary-bg-color;
     height: 4vh !important;
-    background-color: var(--secondaryBackgroundColor) !important;
     box-shadow: 0 0 6px #ffffff40 !important;
 }
 
@@ -287,6 +287,23 @@ button:hover {
 
 .d-contents {
     display: contents !important;
+}
+
+.secondary-bg-color {
+    background-color: var(--secondaryBackgroundColor) !important;
+}
+
+.nav-link.active {
+    color: var(--buttonBackgroundColor) !important;
+    background-color: var(--backgroundColor) !important;
+}
+
+a.nav-link:hover {
+    color: var(--);
+}
+
+.custom-modal-width .modal-dialog {
+    max-width: 1843px;
 }
 
 .cursor-text {
