@@ -34,4 +34,8 @@ export class GenreSelectionModalComponent {
   updateSelectedGenres() {
     this.selectedGenres = this.genres.filter((x) => x.isSelected);
   }
+
+  ratingchanged(rating: number) {
+    console.log("event", rating);
+  }
 }

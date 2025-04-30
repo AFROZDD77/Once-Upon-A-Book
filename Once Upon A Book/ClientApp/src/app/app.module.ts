@@ -17,6 +17,7 @@ import { GenreSelectionModalComponent } from 'src/login-page/Modals/genre-select
 import { GenreSearchPipe } from 'src/helpers/pipes/genreSearchPipe';
 import { GenreSortPipe } from 'src/helpers/pipes/genreSortPipe';
 import { OpenLibraryService } from 'src/services/openLibraryService';
+import { StarRatingModule } from 'angular-star-rating';
 import { RateBooksModalComponent } from 'src/login-page/Modals/rate-books-modal/rate-books-modal.component';
 
 @NgModule({
@@ -37,7 +38,8 @@ import { RateBooksModalComponent } from 'src/login-page/Modals/rate-books-modal/
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    StarRatingModule.forRoot()
   ],
   providers: [
     ThemeService,

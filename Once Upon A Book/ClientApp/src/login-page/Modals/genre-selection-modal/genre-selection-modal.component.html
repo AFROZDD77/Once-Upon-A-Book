@@ -20,6 +20,7 @@
                         <h3 class="mb-0"> Select Your Favorite Genres</h3>
                         <div class="ps-1 pt-1" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Please Select Generes for better recmomendations">
                             <i class="bi bi-info-circle"></i>
+                            <span class="infoText">Rating books helps us provide better recommendations tailored to your preferences.</span>
                         </div>
                     </div>
                     <div class="d-flex w-25 position-relative">
@@ -58,26 +59,26 @@
                 </div>
             </div>
             <div class="tab-pane fade" id="bookSelection" role="tabpanel">
-                <div class="d-flex">
-                    <div class="d-flex flew-grow">
-                        <div class="d-flex flew-grow secondary-bg-color justify-content-center align-items-center px-3 pt-2 pb-0 nav nav-tabs fs-5 border-0" role="tablist">
+                <div class="d-flex flew-grow">
+                    <div class="d-flex flew-grow justify-content-center align-items-center">
+                        <div class="d-flex nav nav-tabs border border-2 border-black rounded-pill p-1"  role="tablist">
                             <div class="nav-item">
-                                <a role="tab" class="nav-link active pb-3 text-decoration-none" data-bs-toggle="tab" href="#home" aria-controls="home" aria-selected="true">
+                                <a role="tab" class="nav-link rounded-pill active text-decoration-none" data-bs-toggle="tab" href="#home" aria-controls="home" aria-selected="true">
                                     Horror
                                 </a>
                             </div>
                             <div class="nav-item">
-                                <a role="tab" class="nav-link pb-3 text-decoration-none" data-bs-toggle="tab" href="#profile" aria-controls="profile" aria-selected="false">
+                                <a role="tab" class="nav-link rounded-pill text-decoration-none" data-bs-toggle="tab" href="#profile" aria-controls="profile" aria-selected="false">
                                     adventure
                                 </a>
                             </div>
                             <div class="nav-item">
-                                <a role="tab" class="nav-link pb-3 text-decoration-none" data-bs-toggle="tab" href="#contact" aria-controls="contact" aria-selected="false">
+                                <a role="tab" class="nav-link rounded-pill text-decoration-none" data-bs-toggle="tab" href="#contact" aria-controls="contact" aria-selected="false">
                                     comedy
                                 </a>
                             </div>
                         </div>
-                    </div>
+                </div>
                 </div>
                 <div class="modal-body">
                     <div class="d-flex flew-grow justify-content-between mb-3">
@@ -94,79 +95,99 @@
                     </div>
                     <div class="tab-content" id="myTabContent">
                         <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                            <div class="d-flex overflow-auto">
-                                <div class="d-flex border">
-                                    <div class="d-flex">
-                                        <div class="d-flex">
-                                            <img src="src/assets/images/SignUp_Page_ Image.png">
+                            <div class="d-flex overflow-auto flex-wrap mh-23rem column-gap-3 row-gap-3 justify-content-between">
+                                <div class="d-flex border col-sm-12 col-md-6 col-xl-3 p-3 border border-2">
+                                    <div class="d-flex flex-column">
+                                        <div class="d-flex column-gap-2">
+                                            <img class="w-50 h-50" src="https://covers.openlibrary.org/b/id/14857110-L.jpg">
                                             <div>
                                                 <h5>The Devil wears Prada</h5>
-                                                <span>by Laurten Wierberger</span>
-                                                <p>Read Only Ratings</p>
-                                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus officiis non beatae harum numquam itaque, quibusdam doloremque blanditiis dolores consequatur accusantium aliquam est error optio vero voluptates nulla quaerat culpa.
-                                                Consequatur exercitationem odit obcaecati beatae atque qui rem ea at commodi natus? Debitis sequi expedita quis quos omnis perferendis itaque, velit eius architecto accusantium earum dignissimos molestias voluptates ipsa harum!0</p>
+                                                <span>by&nbsp;<i>Laurten Wierberger</i></span>
+                                                <div class="d-flex align-items-center">
+                                                    <star-rating [starType]="'svg'" [readOnly]="true" staticColor="ok" [rating]="2.63" title="2.63 out of 5" labelText="2.63" labelPosition="right"></star-rating>
+                                                </div>
+                                                <div>
+                                                    <p>Consequatur exercitationem odit obcaecati beatae atque qui rem ea at commodi natus? Debitis sequi expedita quis quos omnis perferendis itaque, velit eius architecto accusantium earum dignissimos molestias voluptates ipsa harum!0</p>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="d-flex">
-                                            <span>Rate this book:</span>
-                                            <h1>Dynamic Ratings</h1>
+                                        <div class="d-flex justify-content-between mt-3">
+                                            <div class="d-flex align-items-center">
+                                                <span class="mt-0">Rate this book:</span>
+                                                <star-rating [starType]="'svg'" [hoverEnabled]="true" (starClickChange)="ratingchanged($event.rating)"></star-rating>
+                                            </div>
                                             <button>Add to Favorites!</button>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="d-flex border">
-                                    <div class="d-flex">
-                                        <div class="d-flex">
-                                            <img src="src/assets/images/SignUp_Page_ Image.png">
+                                <div class="d-flex border col-sm-12 col-md-6 col-xl-3 p-3 border border-2">
+                                    <div class="d-flex flex-column">
+                                        <div class="d-flex column-gap-2">
+                                            <img class="w-50 h-50" src="https://covers.openlibrary.org/b/id/14857110-L.jpg">
                                             <div>
                                                 <h5>The Devil wears Prada</h5>
-                                                <span>by Laurten Wierberger</span>
-                                                <p>Read Only Ratings</p>
-                                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus officiis non beatae harum numquam itaque, quibusdam doloremque blanditiis dolores consequatur accusantium aliquam est error optio vero voluptates nulla quaerat culpa.
-                                                Consequatur exercitationem odit obcaecati beatae atque qui rem ea at commodi natus? Debitis sequi expedita quis quos omnis perferendis itaque, velit eius architecto accusantium earum dignissimos molestias voluptates ipsa harum!0</p>
+                                                <span>by&nbsp;<i>Laurten Wierberger</i></span>
+                                                <div class="d-flex align-items-center">
+                                                    <star-rating [starType]="'svg'" [readOnly]="true" staticColor="ok" [rating]="2.63" title="2.63 out of 5" labelText="2.63" labelPosition="right"></star-rating>
+                                                </div>
+                                                <div>
+                                                    <p>Consequatur exercitationem odit obcaecati beatae atque qui rem ea at commodi natus? Debitis sequi expedita quis quos omnis perferendis itaque, velit eius architecto accusantium earum dignissimos molestias voluptates ipsa harum!0</p>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="d-flex">
-                                            <span>Rate this book:</span>
-                                            <h1>Dynamic Ratings</h1>
+                                        <div class="d-flex justify-content-between mt-3">
+                                            <div class="d-flex align-items-center">
+                                                <span class="mt-0">Rate this book:</span>
+                                                <star-rating [starType]="'svg'" [hoverEnabled]="true" (starClickChange)="ratingchanged($event.rating)"></star-rating>
+                                            </div>
                                             <button>Add to Favorites!</button>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="d-flex border">
-                                    <div class="d-flex">
-                                        <div class="d-flex">
-                                            <img src="src/assets/images/SignUp_Page_ Image.png">
+                                <div class="d-flex border col-sm-12 col-md-6 col-xl-3 p-3 border border-2">
+                                    <div class="d-flex flex-column">
+                                        <div class="d-flex column-gap-2">
+                                            <img class="w-50 h-50" src="https://covers.openlibrary.org/b/id/14857110-L.jpg">
                                             <div>
                                                 <h5>The Devil wears Prada</h5>
-                                                <span>by Laurten Wierberger</span>
-                                                <p>Read Only Ratings</p>
-                                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus officiis non beatae harum numquam itaque, quibusdam doloremque blanditiis dolores consequatur accusantium aliquam est error optio vero voluptates nulla quaerat culpa.
-                                                Consequatur exercitationem odit obcaecati beatae atque qui rem ea at commodi natus? Debitis sequi expedita quis quos omnis perferendis itaque, velit eius architecto accusantium earum dignissimos molestias voluptates ipsa harum!0</p>
+                                                <span>by&nbsp;<i>Laurten Wierberger</i></span>
+                                                <div class="d-flex align-items-center">
+                                                    <star-rating [starType]="'svg'" [readOnly]="true" staticColor="ok" [rating]="2.63" title="2.63 out of 5" labelText="2.63" labelPosition="right"></star-rating>
+                                                </div>
+                                                <div>
+                                                    <p>Consequatur exercitationem odit obcaecati beatae atque qui rem ea at commodi natus? Debitis sequi expedita quis quos omnis perferendis itaque, velit eius architecto accusantium earum dignissimos molestias voluptates ipsa harum!0</p>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="d-flex">
-                                            <span>Rate this book:</span>
-                                            <h1>Dynamic Ratings</h1>
+                                        <div class="d-flex justify-content-between mt-3">
+                                            <div class="d-flex align-items-center">
+                                                <span class="mt-0">Rate this book:</span>
+                                                <star-rating [starType]="'svg'" [hoverEnabled]="true" (starClickChange)="ratingchanged($event.rating)"></star-rating>
+                                            </div>
                                             <button>Add to Favorites!</button>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="d-flex border">
-                                    <div class="d-flex">
-                                        <div class="d-flex">
-                                            <img src="src/assets/images/SignUp_Page_ Image.png">
+                                <div class="d-flex border col-sm-12 col-md-6 col-xl-3 p-3 border border-2">
+                                    <div class="d-flex flex-column">
+                                        <div class="d-flex column-gap-2">
+                                            <img class="w-50 h-50" src="https://covers.openlibrary.org/b/id/14857110-L.jpg">
                                             <div>
                                                 <h5>The Devil wears Prada</h5>
-                                                <span>by Laurten Wierberger</span>
-                                                <p>Read Only Ratings</p>
-                                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus officiis non beatae harum numquam itaque, quibusdam doloremque blanditiis dolores consequatur accusantium aliquam est error optio vero voluptates nulla quaerat culpa.
-                                                Consequatur exercitationem odit obcaecati beatae atque qui rem ea at commodi natus? Debitis sequi expedita quis quos omnis perferendis itaque, velit eius architecto accusantium earum dignissimos molestias voluptates ipsa harum!0</p>
+                                                <span>by&nbsp;<i>Laurten Wierberger</i></span>
+                                                <div class="d-flex align-items-center">
+                                                    <star-rating [starType]="'svg'" [readOnly]="true" staticColor="ok" [rating]="2.63" title="2.63 out of 5" labelText="2.63" labelPosition="right"></star-rating>
+                                                </div>
+                                                <div>
+                                                    <p>Consequatur exercitationem odit obcaecati beatae atque qui rem ea at commodi natus? Debitis sequi expedita quis quos omnis perferendis itaque, velit eius architecto accusantium earum dignissimos molestias voluptates ipsa harum!0</p>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="d-flex">
-                                            <span>Rate this book:</span>
-                                            <h1>Dynamic Ratings</h1>
+                                        <div class="d-flex justify-content-between mt-3">
+                                            <div class="d-flex align-items-center">
+                                                <span class="mt-0">Rate this book:</span>
+                                                <star-rating [starType]="'svg'" [hoverEnabled]="true" (starClickChange)="ratingchanged($event.rating)"></star-rating>
+                                            </div>
                                             <button>Add to Favorites!</button>
                                         </div>
                                     </div>
@@ -195,7 +216,8 @@
             </div>
         </div>
     </div>
-    <div class="modal-footer">
+    <div class="modal-footer d-flex justify-content-between">
+        <button class="btn btn-secondary" (click)="closeModal()">Cancel</button>
         <button class="btn btn-primary" (click)="closeModal()">Next</button>
     </div>
 </div>
