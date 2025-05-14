@@ -2,49 +2,55 @@
     /* -All the Styles given below are for Light Mode- */
 
     /* -Background Color Variable- */
-    --backgroundColor: #f4f1e7e8;
+    --backgroundColor: var(--IvoryWhite);
 
-     /* -Secondary Background Color Variable- */
-     --secondaryBackgroundColor: #cbae85;
+    /* -Secondary Background Color Variable- */
+    --secondaryBackgroundColor: var(--LightBrown);
 
     /* -Text Color Variable- */
-    --textColor: #4a3f35;
+    --textColor: var(--KindOfBrown);
 
     /* -Input Background Color Variable- */
-    --inputBackgroundColor: #fdfdfddc;
+    --inputBackgroundColor: var(--PureWhite);
 
     /* -Input Outline Variable- */
-    --inputOutlineColor: #DAA520;
+    --inputOutlineColor: var(--GoldenYellow);
 
     /* -Input Text Color Variable- */
-    --inputTextColor: #4a3f35;
+    --inputTextColor: var(--KindOfBrown);
 
     /* -Button Background Color Variable- */
-    --buttonBackgroundColor: #ffb600e8 ;
+    --buttonBackgroundColor: var(--BrightGoldenYellow) ;
 
     /* -Button Text Color Variable- */
-    --buttonTextColor: #000000;
+    --buttonTextColor: var(--PureBlack);
 
     /* -Button Highlight Color Variable- */
-    --buttonHighlightColor: #4a3f35;
+    --buttonHighlightColor: var(--KindOfBrown);
 
     /* -Link Text color Variable- */
-    --linkTextColor: #4a3f35;
+    --linkTextColor: var(--KindOfBrown);
 
     /* -Link Hover color Variable- */
-    --linkHoverColor: #DAA520;
+    --linkHoverColor: var(--GoldenYellow);
 
     /* -span infoText color Variable- */
     --infoTextColor: #72606091;
 
     /* -theme toggle button color - */
-    --themeToggleButtonColor: #16191c;
+    --themeToggleButtonColor:  var(--PureBlack);
 
     /* -genre outline  color - */
-    --genreOutlineColor: #16191c;
+    --genreOutlineColor: var(--PureBlack);
+
+    /* -genre background color - */
+    --genreBackgroundColor: var(--IvoryWhite);
+
+    /* -genre Tab background color - */
+    --genreTabBackgroundColor: var(--BrightGoldenYellow);
 
     /* -genre container outline  color - */
-    --genreContainerOutlineColor: #DAA520;
+    --genreContainerOutlineColor: var(--GoldenYellow);
 
     /* -Styling Accross the WebApp- */  // not working!
     height: 100vh !important;
@@ -53,60 +59,75 @@
     font-family: "playfair-display", sans-serif !important;
 
     /* -Variables- */
-    --successGreen: #45d803d9;
-    --warningRed: #ff0000;
+    --IvoryWhite: #f4f1e7e8;
+    --LightBrown: #cbae85;
+    --KindOfBrown: #4a3f35;
+    --GoldenYellow: #DAA520;
+    --PureWhite: #ffffff;
+    --PureBlack: #000000;
+    --PrimaryDarkColor: #16191c;
+    --SecondaryDarkColor: #383F47;
+    --SuccessGreen: #45d803d9;
+    --BrightGoldenYellow: #ffb600e8;
+    --WarningRed: #ff0000;
 }
 
 /* -All the Styles given below are for Dark Mode- */
 
 .dark-mode {
     /* -Background Color Variable- */
-    --backgroundColor: #16191c;
+    --backgroundColor: var(--PrimaryDarkColor);
 
     /* -Secondary Background Color Variable- */
-    --secondaryBackgroundColor: #383F47;
+    --secondaryBackgroundColor: var(--SecondaryDarkColor);
 
     /* -Text Color Variable- */
-    --textColor: #f4f1e7e8;
+    --textColor: var(--IvoryWhite);
 
     /* -Input Background Color Variable- */
-    --inputBackgroundColor: #000000;
+    --inputBackgroundColor: var(--PureBlack);
 
     /* -Input Outline Variable- */
-    --inputOutlineColor: #DAA520;
+    --inputOutlineColor: var(--GoldenYellow);
 
     /* -Input Text Color Variable- */
-    --inputTextColor: #f4f1e7e8;
+    --inputTextColor: var(--IvoryWhite);
 
     /* -Button Background Color Variable- */
-    --buttonBackgroundColor: #000000 ;
+    --buttonBackgroundColor: var(--PureBlack) ;
 
     /* -Button Text Color Variable- */
-    --buttonTextColor: #DAA520;
+    --buttonTextColor: var(--GoldenYellow);
 
     /* -Button Highlight Color Variable- */
-    --buttonHighlightColor: #DAA520;
+    --buttonHighlightColor: var(--GoldenYellow);
 
     /* -Link Text color Variable- */
-    --linkTextColor: #f4f1e7e8;
+    --linkTextColor: var(--IvoryWhite);
 
     /* -Link Hover color Variable- */
-    --linkHoverColor: #ffb600e8;
+    --linkHoverColor: var(--BrightGoldenYellow);
 
     /* -span infoText color Variable- */
     --infoTextColor: #989898bf;
 
     /* -theme toggle button color - */
-    --themeToggleButtonColor: #ededed;
+    --themeToggleButtonColor: var(--PureWhite);
 
     /* -genre outline  color - */
-    --genreOutlineColor: var(--successGreen);
+    --genreOutlineColor: var(--SuccessGreen);
+
+    /* -genre background color - */
+    --genreBackgroundColor: var(--SecondaryDarkColor);
+
+    /* -genre Tab background color - */
+    --genreTabBackgroundColor: var(--SecondaryDarkColor);
 
     /* -genre container outline  color - */
-    --genreContainerOutlineColor: #f4f1e7e8;
+    --genreContainerOutlineColor: var(--IvoryWhite);
 
     /* -Variables- */
-    --successGreen: #4fff00;
+    --SuccessGreen: #4fff00;
 }
 
 .modal-header, .modal-body, .modal-footer, .modal-content {
@@ -157,7 +178,7 @@ span.infoText {
 }
 
 span.warningText {
-    color: var(--warningRed) !important;
+    color: var(--WarningRed) !important;
     display: flex;
     font-size: 1rem;
 }
@@ -189,16 +210,16 @@ input[type="checkbox"]:checked {
 
 input.validInput {
     @extend .outline-standard-style;
-    outline-color: var(--successGreen) !important;
+    outline-color: var(--SuccessGreen) !important;
 }
 
 input.validInput:focus {
-    box-shadow: var(--successGreen) 0px 0px 0.2rem 0.1rem !important;
+    box-shadow: var(--SuccessGreen) 0px 0px 0.2rem 0.1rem !important;
 }
 
 input.inValidInput {
     @extend .outline-standard-style;
-    outline-color: var(--warningRed)  !important;
+    outline-color: var(--WarningRed)  !important;
 }
 
 .outline-standard-style {
@@ -207,7 +228,7 @@ input.inValidInput {
 }
 
 input.inValidInput:focus {
-    box-shadow: var(--warningRed) 0px 0px 0.2rem 0.1rem !important;
+    box-shadow: var(--WarningRed) 0px 0px 0.2rem 0.1rem !important;
 }
 
 input:focus {
@@ -238,6 +259,28 @@ button:hover {
     color: var(--buttonTextColor) !important;
 }
 
+p {
+    font-size: 13px;
+}
+
+hr{
+    margin:0;
+    height:0;
+    width:85px;
+    border:0;
+    border-bottom:1px solid;
+}
+
+.starRatings {
+    transition: transform 300ms ease-in-out;
+    margin-right: 0.25rem;
+    margin-left: 0.25rem;
+}
+
+.starRatings:hover {
+    transform: scale(1.2);
+}
+
 .headerClass {
     @extend .secondary-bg-color;
     height: 7vh !important;
@@ -250,11 +293,11 @@ button:hover {
 }
 
 .bg-succes {
-    background-color: var(--successGreen) !important;
+    background-color: var(--SuccessGreen) !important;
 }
 
 .bg-warning {
-    background-color: var(--warningRed) !important;
+    background-color: var(--WarningRed) !important;
 }
 
 .input-text-color {
@@ -293,17 +336,30 @@ button:hover {
     background-color: var(--secondaryBackgroundColor) !important;
 }
 
-.nav-link.active {
-    color: var(--buttonBackgroundColor) !important;
-    background-color: var(--backgroundColor) !important;
+.nav-link {
+    transition: background-color 0.5s ease, border-color 0.5s ease, transform 3s ease;
 }
 
-a.nav-link:hover {
-    color: var(--);
+.nav-link.active {
+    color: var(--textColor) !important;
+    background-color: var(--genreTabBackgroundColor) !important;
+    border-color: var(--PureBlack) !important;
+}
+
+a.nav-link:not(.active):hover {
+    border-color: var(--GoldenYellow) !important;
 }
 
 .custom-modal-width .modal-dialog {
     max-width: 1843px;
+}
+
+.custom-modal-width .modal-content {
+    min-height: 85%;
+}
+
+.component-host-scrollable, .modal-content { 
+    flex-grow: 1;
 }
 
 .cursor-text {
@@ -326,11 +382,6 @@ a.nav-link:hover {
     min-width: fit-content !important;
 }
 
-
-.modal-dialog, .modal-content {
-    max-height: 75% !important;
-}
-
 /* -Genre Buttons Stylings- */
 
 // .dot {
@@ -349,7 +400,7 @@ a.nav-link:hover {
 }
 
 .selectedDot {
-    background-color: var(--successGreen);
+    background-color: var(--SuccessGreen);
 }
 
 .unSelectedDot {
@@ -365,6 +416,16 @@ a.nav-link:hover {
 .unSelectedGenre {
     box-shadow: 2px 2px 4px 1px var(--buttonTextColor);
     outline-color: var(--buttonTextColor);
+    background-color: var(--genreBackgroundColor);
+}
+
+.dark-mode .unSelectedGenre {
+    box-shadow: none !important;
+    outline: none !important;
+}
+
+.dark-mode .nav-tabs {
+    border-color: var(--SecondaryDarkColor) !important;
 }
 
 .genreSelectionContainer {
